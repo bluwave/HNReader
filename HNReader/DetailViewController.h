@@ -21,4 +21,6 @@
 
 @property(nonatomic, retain) IBOutlet UIWebView * webView;
 
+@property(nonatomic,retain) IBOutlet UIView * containerView;
+
 @end

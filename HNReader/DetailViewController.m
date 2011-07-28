@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 
 #import "RootViewController.h"
+#import "HNReaderAppDelegate.h"
 
 @interface DetailViewController ()
 @property (nonatomic, retain) UIPopoverController *popoverController;
@@ -27,6 +28,7 @@
 
 @synthesize webView;
 
+@synthesize containerView;
 #pragma mark - Managing the detail item
 
 /*
@@ -51,6 +53,7 @@
 {
     // Update the user interface for the detail item.
 
+    [[HNReaderAppDelegate instance] toggleSpinner:YES withView:self.view withLabel:@"Loading..." withDetailLabel:@"Please wait"];
     NSURLRequest * requ = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:_detailItem]];
     [self.webView loadRequest:requ];
     
@@ -59,6 +62,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.view.autoresizingMask =0;
+    
+    CGRect frame =  self.view.frame;
+    frame.size.height = 300;
+    self.view.frame = frame;
+    
+    self.webView.contentMode = UIViewContentModeScaleAspectFit;
+    self.webView.scalesPageToFit = YES;
+    
+    NSLog(@"details viewWillAppear");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -80,6 +93,7 @@
     return YES;
 }
 
+
 #pragma mark - Split view support
 
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController: (UIPopoverController *)pc
@@ -90,6 +104,14 @@
     [self.toolbar setItems:items animated:YES];
     [items release];
     self.popoverController = pc;
+    
+    self.containerView.autoresizingMask = 0;
+    CGRect frame = self.containerView.frame;
+    NSLog(@"PORTRAIT: width: %f height: %f", frame.size.width, frame.size.height);
+    frame.size.height = 900;
+    self.containerView.backgroundColor = [UIColor greenColor];
+    self.containerView.frame = frame;
+
 }
 
 // Called when the view is shown again in the split view, invalidating the button and popover controller.
@@ -100,6 +122,14 @@
     [self.toolbar setItems:items animated:YES];
     [items release];
     self.popoverController = nil;
+
+//    self.containerView.autoresizingMask = 0;
+    CGRect frame = self.containerView.frame;
+    NSLog(@"LANDSCAPE: width: %f height: %f", frame.size.width, frame.size.height);
+    frame.size.height = 400;
+    self.containerView.backgroundColor = [UIColor redColor];
+    self.containerView.frame = frame;
+
 }
 
 /*
@@ -125,12 +155,14 @@
 {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+	self.containerView = nil;
+    self.webView = nil;
 	// Release any cached data, images, etc that aren't in use.
 }
 
 - (void)dealloc
 {
+    [containerView release];
     [webView release];
     [_myPopoverController release];
     [_toolbar release];
@@ -139,4 +171,11 @@
     [super dealloc];
 }
 
+
+
+
+-(void)webViewDidFinishLoad:(UIWebView *)wv
+{
+    [[HNReaderAppDelegate instance] toggleSpinner:NO withView:nil withLabel:nil withDetailLabel:nil];
+}
 @end
