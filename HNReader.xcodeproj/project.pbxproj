@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5506571C13DBF3B80000F55D /* HNClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5506571B13DBF3B80000F55D /* HNClient.m */; };
+		5531280B13E2187E0044F813 /* HNViewManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5531280913E2187E0044F813 /* HNViewManagerController.m */; };
+		5531280C13E2187E0044F813 /* HNViewManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5531280A13E2187E0044F813 /* HNViewManagerController.xib */; };
+		5531280F13E219B50044F813 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5531280E13E219B50044F813 /* RootViewController.xib */; };
 		553ACB6713D7F54300B1B571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6613D7F54300B1B571 /* UIKit.framework */; };
 		553ACB6913D7F54300B1B571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6813D7F54300B1B571 /* Foundation.framework */; };
 		553ACB6B13D7F54300B1B571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6A13D7F54300B1B571 /* CoreGraphics.framework */; };
@@ -15,9 +18,6 @@
 		553ACB7413D7F54300B1B571 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 553ACB7313D7F54300B1B571 /* main.m */; };
 		553ACB7713D7F54300B1B571 /* HNReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 553ACB7613D7F54300B1B571 /* HNReaderAppDelegate.m */; };
 		553ACB7A13D7F54300B1B571 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553ACB7813D7F54300B1B571 /* MainWindow.xib */; };
-		553ACB7D13D7F54300B1B571 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553ACB7C13D7F54300B1B571 /* DetailViewController.m */; };
-		553ACB8013D7F54300B1B571 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 553ACB7E13D7F54300B1B571 /* DetailView.xib */; };
-		553ACB8313D7F54300B1B571 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 553ACB8213D7F54300B1B571 /* RootViewController.m */; };
 		553ACB8A13D7F54300B1B571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6613D7F54300B1B571 /* UIKit.framework */; };
 		553ACB8B13D7F54300B1B571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6813D7F54300B1B571 /* Foundation.framework */; };
 		553ACB8C13D7F54300B1B571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553ACB6A13D7F54300B1B571 /* CoreGraphics.framework */; };
@@ -54,6 +54,10 @@
 /* Begin PBXFileReference section */
 		5506571A13DBF3B80000F55D /* HNClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNClient.h; sourceTree = "<group>"; };
 		5506571B13DBF3B80000F55D /* HNClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNClient.m; sourceTree = "<group>"; };
+		5531280813E2187E0044F813 /* HNViewManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNViewManagerController.h; sourceTree = "<group>"; };
+		5531280913E2187E0044F813 /* HNViewManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNViewManagerController.m; sourceTree = "<group>"; };
+		5531280A13E2187E0044F813 /* HNViewManagerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNViewManagerController.xib; sourceTree = "<group>"; };
+		5531280E13E219B50044F813 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		553ACB6213D7F54300B1B571 /* HNReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HNReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		553ACB6613D7F54300B1B571 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		553ACB6813D7F54300B1B571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,11 +69,6 @@
 		553ACB7513D7F54300B1B571 /* HNReaderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderAppDelegate.h; sourceTree = "<group>"; };
 		553ACB7613D7F54300B1B571 /* HNReaderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderAppDelegate.m; sourceTree = "<group>"; };
 		553ACB7913D7F54300B1B571 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		553ACB7B13D7F54300B1B571 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		553ACB7C13D7F54300B1B571 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		553ACB7F13D7F54300B1B571 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DetailView.xib; sourceTree = "<group>"; };
-		553ACB8113D7F54300B1B571 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		553ACB8213D7F54300B1B571 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		553ACB8913D7F54300B1B571 /* HNReaderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HNReaderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		553ACB9113D7F54300B1B571 /* HNReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HNReaderTests-Info.plist"; sourceTree = "<group>"; };
 		553ACB9313D7F54300B1B571 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		553ACB6C13D7F54300B1B571 /* HNReader */ = {
 			isa = PBXGroup;
 			children = (
+				5531280E13E219B50044F813 /* RootViewController.xib */,
 				55C436ED13D8018000F7C969 /* ProgressSpinner.h */,
 				55C436EE13D8018000F7C969 /* ProgressSpinner.m */,
 				55C436C713D7FB9000F7C969 /* JSON */,
@@ -172,12 +172,10 @@
 				553ACB7513D7F54300B1B571 /* HNReaderAppDelegate.h */,
 				553ACB7613D7F54300B1B571 /* HNReaderAppDelegate.m */,
 				553ACB7813D7F54300B1B571 /* MainWindow.xib */,
-				553ACB7B13D7F54300B1B571 /* DetailViewController.h */,
-				553ACB7C13D7F54300B1B571 /* DetailViewController.m */,
-				553ACB7E13D7F54300B1B571 /* DetailView.xib */,
-				553ACB8113D7F54300B1B571 /* RootViewController.h */,
-				553ACB8213D7F54300B1B571 /* RootViewController.m */,
 				553ACB6D13D7F54300B1B571 /* Supporting Files */,
+				5531280813E2187E0044F813 /* HNViewManagerController.h */,
+				5531280913E2187E0044F813 /* HNViewManagerController.m */,
+				5531280A13E2187E0044F813 /* HNViewManagerController.xib */,
 			);
 			path = HNReader;
 			sourceTree = "<group>";
@@ -327,7 +325,8 @@
 			files = (
 				553ACB7113D7F54300B1B571 /* InfoPlist.strings in Resources */,
 				553ACB7A13D7F54300B1B571 /* MainWindow.xib in Resources */,
-				553ACB8013D7F54300B1B571 /* DetailView.xib in Resources */,
+				5531280C13E2187E0044F813 /* HNViewManagerController.xib in Resources */,
+				5531280F13E219B50044F813 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,8 +364,6 @@
 			files = (
 				553ACB7413D7F54300B1B571 /* main.m in Sources */,
 				553ACB7713D7F54300B1B571 /* HNReaderAppDelegate.m in Sources */,
-				553ACB7D13D7F54300B1B571 /* DetailViewController.m in Sources */,
-				553ACB8313D7F54300B1B571 /* RootViewController.m in Sources */,
 				55C436B513D7F81100F7C969 /* NSURLConnection+Blocks.m in Sources */,
 				55C436B813D7F87800F7C969 /* ApiResponse.m in Sources */,
 				55C436E113D7FC1400F7C969 /* NSObject+SBJson.m in Sources */,
@@ -383,6 +380,7 @@
 				55C436EC13D7FC1400F7C969 /* SBJsonWriter.m in Sources */,
 				55C436EF13D8018000F7C969 /* ProgressSpinner.m in Sources */,
 				5506571C13DBF3B80000F55D /* HNClient.m in Sources */,
+				5531280B13E2187E0044F813 /* HNViewManagerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,14 +417,6 @@
 				553ACB7913D7F54300B1B571 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		553ACB7E13D7F54300B1B571 /* DetailView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				553ACB7F13D7F54300B1B571 /* en */,
-			);
-			name = DetailView.xib;
 			sourceTree = "<group>";
 		};
 		553ACB9213D7F54300B1B571 /* InfoPlist.strings */ = {

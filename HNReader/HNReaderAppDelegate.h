@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProgressSpinner.h"
 
-@class RootViewController;
-
-@class DetailViewController;
+@class HNViewManagerController;
 
 @interface HNReaderAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -19,13 +17,10 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet UISplitViewController *splitViewController;
-
-@property (nonatomic, retain) IBOutlet RootViewController *rootViewController;
-
-@property (nonatomic, retain) IBOutlet DetailViewController *detailViewController;
+@property (nonatomic, retain) IBOutlet HNViewManagerController * viewManager;
 
 @property(retain,nonatomic) ProgressSpinner * progressSpinner;
 +(HNReaderAppDelegate *) instance;
 -(void) toggleSpinner:(BOOL)sFlag withView:(UIView*) view withLabel:(NSString*) label withDetailLabel:(NSString*) detail;
+- (BOOL) isOrientationPortrait;
 @end

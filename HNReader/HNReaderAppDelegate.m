@@ -8,18 +8,14 @@
 
 #import "HNReaderAppDelegate.h"
 
-#import "RootViewController.h"
+#import "HNViewManagerController.h"
 
 @implementation HNReaderAppDelegate
 
 
 @synthesize window=_window;
 
-@synthesize splitViewController=_splitViewController;
-
-@synthesize rootViewController=_rootViewController;
-
-@synthesize detailViewController=_detailViewController;
+@synthesize viewManager;
 
 @synthesize progressSpinner;
 
@@ -27,7 +23,7 @@
 {
     // Override point for customization after application launch.
     // Add the split view controller's view to the window and display.
-    self.window.rootViewController = self.splitViewController;
+    self.window.rootViewController = viewManager;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -74,9 +70,7 @@
 - (void)dealloc
 {
     [_window release];
-    [_splitViewController release];
-    [_rootViewController release];
-    [_detailViewController release];
+    [viewManager release];
     [progressSpinner release];
     [super dealloc];
 }
@@ -114,5 +108,15 @@
     }
     
     
+}
+
+- (BOOL) isOrientationPortrait
+{
+    
+    if(([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft )||
+       ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight ))
+        return NO;
+    else
+        return YES;
 }
 @end
