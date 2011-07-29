@@ -64,7 +64,7 @@
 						<float key="IBUISectionHeaderHeight">22</float>
 						<float key="IBUISectionFooterHeight">22</float>
 					</object>
-					<object class="IBUINavigationBar" id="711180481">
+					<object class="IBUINavigationBar" id="872543289">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrameSize">{768, 44}</string>
@@ -77,8 +77,8 @@
 						</object>
 						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUINavigationItem" id="32987230">
-								<reference key="IBUINavigationBar" ref="711180481"/>
+							<object class="IBUINavigationItem" id="830660829">
+								<reference key="IBUINavigationBar" ref="872543289"/>
 								<string key="IBUITitle">Hacker News</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
@@ -87,7 +87,7 @@
 				</object>
 				<string key="NSFrameSize">{768, 1024}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSNextKeyView" ref="711180481"/>
+				<reference key="NSNextKeyView" ref="872543289"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -165,7 +165,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="761037626"/>
-							<reference ref="711180481"/>
+							<reference ref="872543289"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -176,20 +176,20 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
-						<reference key="object" ref="711180481"/>
+						<reference key="object" ref="872543289"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="32987230"/>
+							<reference ref="830660829"/>
 						</object>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
-						<reference key="object" ref="32987230"/>
+						<reference key="object" ref="830660829"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
-						<reference key="parent" ref="711180481"/>
+						<reference key="parent" ref="872543289"/>
 						<string key="objectName">Navigation Item - Hacker News</string>
 					</object>
 				</object>
@@ -229,7 +229,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

@@ -9,7 +9,7 @@
 #import "HNStoryDetailViewController.h"
 #import "HNReaderAppDelegate.h"
 
-#define k_xOrigin 275
+#define k_xOrigin 200
 
 @interface HNStoryDetailViewController()
 -(void) initView;
@@ -17,8 +17,12 @@
 
 @implementation HNStoryDetailViewController
 @synthesize _webView;
+@synthesize _titleBar;
+@synthesize _spinner;
 - (void)dealloc
 {
+    [_spinner release];
+    [_titleBar release];
     [_webView release];
     [super dealloc];
 }
@@ -50,7 +54,7 @@
     [self initView];
     self._webView.contentMode = UIViewContentModeScaleAspectFit;
     self._webView.scalesPageToFit = YES;
-    
+    _spinner.hidden = NO;
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -71,7 +75,7 @@
 #pragma mark webview delegates
 -(void)webViewDidFinishLoad:(UIWebView *)wv
 {
-
+    _spinner.hidden = YES;
     [[HNReaderAppDelegate instance] toggleSpinner:NO withView:nil withLabel:nil withDetailLabel:nil];    
 }
 
@@ -85,12 +89,14 @@
     self.view.frame = frame;
 }
 
--(void) slideInWithUrl:(NSString * )url
+-(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title
 {
     [self loadUrl:url];
 
     CGRect frame = self.view.frame;
     frame.origin.x = k_xOrigin;
+    
+    self._titleBar.title = title;
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
         self.view.frame = frame;

@@ -107,21 +107,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
-    [[HNReaderAppDelegate instance].viewController showUrl:url];
+    NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
+    [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 #pragma mark - private helpers
+- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex 
+{
+    [self getNews];
+}
+
 -(void) getNews
 {
     HNClient * api = [[HNClient alloc] init];
-    [[HNReaderAppDelegate instance] toggleSpinner:YES withView:self.view withLabel:@"testing..." withDetailLabel:@"please wait..."];
+    [[HNReaderAppDelegate instance] toggleSpinner:YES withView:self.view withLabel:@"Querying HN API" withDetailLabel:@"please wait..."];
     [api getNews:nil withCompleteBlock:^(ApiResponse *resp)
      {
          
          if(resp.hasError)
          {
-             [[[[UIAlertView alloc] initWithTitle:@"Error title" message:resp.errorMessage delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
+             [[[[UIAlertView alloc] initWithTitle:@"Api Service Unavailable" message:@"Click OK to try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
          }
          else
          {

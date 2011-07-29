@@ -106,12 +106,19 @@
 
 
 #pragma mark - methods
--(void) showUrl:(NSString*) url
+-(void) showUrl:(NSString*) url withTitle:(NSString *) title
 {
+    for(int i= [_viewsToNotifyOfOrientationChange count]-1; i > 0; i--)
+    {
+        HNBaseViewController * v = [_viewsToNotifyOfOrientationChange objectAtIndex:i];
+        [v.view removeFromSuperview];
+        [_viewsToNotifyOfOrientationChange removeObject:v];
+    }
+    
     HNStoryDetailViewController * story = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
     [_viewsToNotifyOfOrientationChange addObject:story];
     [self.view addSubview:story.view];
-    [story slideInWithUrl:url];
+    [story slideInWithUrl:url withTitle:title];
     [story release];
 }
 
