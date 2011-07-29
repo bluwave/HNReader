@@ -8,6 +8,7 @@
 
 #import "HNReaderViewController.h"
 #import "HNNewsListViewController.h"
+#import "HNStoryDetailViewController.h"
 @interface HNReaderViewController()
 @property(retain, nonatomic) NSMutableArray * _viewsToNotifyOfOrientationChange;
 @end
@@ -103,5 +104,15 @@
     }
 }
 
+
+#pragma mark - methods
+-(void) showUrl:(NSString*) url
+{
+    HNStoryDetailViewController * story = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
+    [_viewsToNotifyOfOrientationChange addObject:story];
+    [self.view addSubview:story.view];
+    [story slideInWithUrl:url];
+    [story release];
+}
 
 @end

@@ -9,8 +9,8 @@
 #import "HNNewsListViewController.h"
 #import "HNClient.h"
 #import "HNTableViewCell.h"
-
 #import "HNReaderAppDelegate.h"
+#import "HNReaderViewController.h"
 
 @interface HNNewsListViewController()
 @property (retain, nonatomic) NSMutableArray * _newsPosts;
@@ -80,9 +80,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"posts: %d", [_newsPosts count]);
-    return [_newsPosts count];
-    
+    return [_newsPosts count];    
 }
 
 
@@ -108,8 +106,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    NSString * url = [[newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
-    //    [[HNReaderAppDelegate instance].detailViewController setDetailItem:url];
+    NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
+    [[HNReaderAppDelegate instance].viewController showUrl:url];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }

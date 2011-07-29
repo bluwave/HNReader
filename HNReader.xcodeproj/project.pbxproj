@@ -41,6 +41,8 @@
 		55596B2D13E275B5008DBD28 /* HNReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B2C13E275B5008DBD28 /* HNReaderTests.m */; };
 		5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB3813E2803D001369BE /* HNTableViewCell.m */; };
 		5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4313E2815B001369BE /* HNTableViewCell.xib */; };
+		5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */; };
+		5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,9 @@
 		5581FB3713E2803D001369BE /* HNTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableViewCell.h; sourceTree = "<group>"; };
 		5581FB3813E2803D001369BE /* HNTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableViewCell.m; sourceTree = "<group>"; };
 		5581FB4313E2815B001369BE /* HNTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNTableViewCell.xib; sourceTree = "<group>"; };
+		5581FB4D13E294EF001369BE /* HNStoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStoryDetailViewController.h; sourceTree = "<group>"; };
+		5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStoryDetailViewController.m; sourceTree = "<group>"; };
+		5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNStoryDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +153,9 @@
 				5581FB3713E2803D001369BE /* HNTableViewCell.h */,
 				5581FB3813E2803D001369BE /* HNTableViewCell.m */,
 				5581FB4313E2815B001369BE /* HNTableViewCell.xib */,
+				5581FB4D13E294EF001369BE /* HNStoryDetailViewController.h */,
+				5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */,
+				5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 				55596B1713E275B5008DBD28 /* HNReaderViewController.xib in Resources */,
 				5518593313E278F900778555 /* HNNewsListViewController.xib in Resources */,
 				5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */,
+				5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +408,7 @@
 				5518593113E278F900778555 /* HNBaseViewController.m in Sources */,
 				5518593213E278F900778555 /* HNNewsListViewController.m in Sources */,
 				5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */,
+				5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

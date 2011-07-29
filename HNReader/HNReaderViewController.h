@@ -14,5 +14,5 @@
 
 @property(retain, nonatomic) IBOutlet UIView * _left;
 @property(retain, nonatomic) IBOutlet UIView * _right;
-
+-(void) showUrl:(NSString*) url;
 @end
