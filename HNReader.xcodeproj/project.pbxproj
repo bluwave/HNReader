@@ -43,6 +43,7 @@
 		5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4313E2815B001369BE /* HNTableViewCell.xib */; };
 		5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */; };
 		5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */; };
+		558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558B60D813E2AB660014B37C /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		5581FB4D13E294EF001369BE /* HNStoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStoryDetailViewController.h; sourceTree = "<group>"; };
 		5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStoryDetailViewController.m; sourceTree = "<group>"; };
 		5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNStoryDetailViewController.xib; sourceTree = "<group>"; };
+		558B60D813E2AB660014B37C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */,
 				55596AFE13E275B5008DBD28 /* UIKit.framework in Frameworks */,
 				55596B0013E275B5008DBD28 /* Foundation.framework in Frameworks */,
 				55596B0213E275B5008DBD28 /* CoreGraphics.framework in Frameworks */,
@@ -223,6 +226,7 @@
 		55596AFC13E275B5008DBD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				558B60D813E2AB660014B37C /* MessageUI.framework */,
 				55596AFD13E275B5008DBD28 /* UIKit.framework */,
 				55596AFF13E275B5008DBD28 /* Foundation.framework */,
 				55596B0113E275B5008DBD28 /* CoreGraphics.framework */,

@@ -9,9 +9,12 @@
 #import "HNStoryDetailViewController.h"
 #import "HNReaderAppDelegate.h"
 
+
 #define k_xOrigin 200
 
 @interface HNStoryDetailViewController()
+@property (retain, nonatomic) NSString * _currentTitle;
+@property (retain, nonatomic) NSString * _currentUrl;
 -(void) initView;
 @end
 
@@ -19,8 +22,11 @@
 @synthesize _webView;
 @synthesize _titleBar;
 @synthesize _spinner;
+@synthesize _currentUrl, _currentTitle;
 - (void)dealloc
 {
+    [_currentTitle release];
+    [_currentUrl release];
     [_spinner release];
     [_titleBar release];
     [_webView release];
@@ -51,6 +57,12 @@
 {
     [super viewDidLoad];
     
+    
+    if( ![MFMailComposeViewController canSendMail] )
+    {
+        // get rid of the email button
+    }
+    
     [self initView];
     self._webView.contentMode = UIViewContentModeScaleAspectFit;
     self._webView.scalesPageToFit = YES;
@@ -79,6 +91,7 @@
     [[HNReaderAppDelegate instance] toggleSpinner:NO withView:nil withLabel:nil withDetailLabel:nil];    
 }
 
+#pragma mark helpers
 -(void) initView
 {
     CGRect frame = self.view.frame;
@@ -88,9 +101,31 @@
     frame.size.height = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 1004 : 748;
     self.view.frame = frame;
 }
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    if (result == MFMailComposeResultSent) 
+    {
+        NSLog(@"It's away!");
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
 
+-(IBAction) sendMail:(id) sender
+{
+
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:[NSString stringWithFormat:@"[HN] %@", _currentTitle]];
+    [controller setMessageBody:_currentUrl isHTML:YES];
+    if (controller) [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
+
+#pragma mark public 
 -(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title
 {
+    self._currentUrl = url;
+    self._currentTitle = title;
     [self loadUrl:url];
 
     CGRect frame = self.view.frame;
@@ -109,6 +144,8 @@
     [_webView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
+
+#pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
     CGRect frame = self.view.frame;

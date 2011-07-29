@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HNBaseViewController.h"
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface HNStoryDetailViewController : HNBaseViewController {
+@interface HNStoryDetailViewController : HNBaseViewController<MFMailComposeViewControllerDelegate> {
     
 }
 @property(retain, nonatomic) IBOutlet UIWebView * _webView;
@@ -18,4 +19,5 @@
 
 -(void) loadUrl:(NSString * ) url;
 -(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title;
+-(IBAction) sendMail:(id) sender;
 @end
