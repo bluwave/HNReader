@@ -139,17 +139,16 @@
 
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
-    NSLog(@"list view rotate");
     CGRect frame = self.view.frame;
-    if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
+    if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
     {
-        frame.size.width = 320;
+        frame.size.width = 768;
         frame.size.height = 1004;
     }
     else
     {
-        frame.size.width = 320;
-        frame.size.height = 748;   
+        frame.size.width = 1024;
+        frame.size.height = 748;
     }
     self.view.frame = frame;
 }

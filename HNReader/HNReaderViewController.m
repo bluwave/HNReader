@@ -46,6 +46,9 @@
     [self.view addSubview:list.view];
     [_viewsToNotifyOfOrientationChange addObject:list];
     [list release];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 
@@ -64,5 +67,41 @@
     // Return YES for supported orientations
     return YES;
 }
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    // We must add a delay here, otherwise we'll swap in the new view
+	// too quickly and we'll get an animation glitch
+    [self performSelector:@selector(rotateTheScreen) withObject:nil afterDelay:0];
+}
+
+- (void) rotateTheScreen
+{
+    CGRect lf = self._left.frame;
+    if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
+    {
+        lf.size.width = 768;
+        lf.size.height = 1004;
+    }
+    else
+    {
+        lf.size.width = 1024;
+        lf.size.height = 748;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.2];
+    self._left.frame = lf;
+    [UIView commitAnimations];
+    
+    
+    for(HNBaseViewController * v in _viewsToNotifyOfOrientationChange)
+    {
+        if([v respondsToSelector:@selector(rotate:)])
+            [v rotate:[UIDevice currentDevice].orientation];
+    }
+}
+
 
 @end
