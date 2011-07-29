@@ -8,6 +8,7 @@
 
 #import "HNNewsListViewController.h"
 #import "HNClient.h"
+#import "HNTableViewCell.h"
 
 #import "HNReaderAppDelegate.h"
 
@@ -89,18 +90,19 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    HNTableViewCell *cell =  (HNTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) 
+    {
+        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"HNTableViewCell" owner:nil options:nil];
+        cell = [nibContents objectAtIndex:0];
     }
     
     // Configure the cell.
     
     NSDictionary * dict = [_newsPosts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
-    cell.textLabel.font = [UIFont systemFontOfSize:11];
-//    cell.textLabel.numberOfLines = 3;
-//    NSLog(@"title: %@", cell.textLabel.text);
+    cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
+    cell.url.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"url"]];
+    cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
     return cell;
 }
 
@@ -108,6 +110,7 @@
 {
     //    NSString * url = [[newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
     //    [[HNReaderAppDelegate instance].detailViewController setDetailItem:url];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 #pragma mark - private helpers

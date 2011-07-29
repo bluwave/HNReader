@@ -39,6 +39,8 @@
 		55596B2813E275B5008DBD28 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55596B2613E275B5008DBD28 /* InfoPlist.strings */; };
 		55596B2B13E275B5008DBD28 /* HNReaderTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 55596B2A13E275B5008DBD28 /* HNReaderTests.h */; };
 		55596B2D13E275B5008DBD28 /* HNReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B2C13E275B5008DBD28 /* HNReaderTests.m */; };
+		5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB3813E2803D001369BE /* HNTableViewCell.m */; };
+		5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4313E2815B001369BE /* HNTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,9 @@
 		55596B2913E275B5008DBD28 /* HNReaderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HNReaderTests-Prefix.pch"; sourceTree = "<group>"; };
 		55596B2A13E275B5008DBD28 /* HNReaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderTests.h; sourceTree = "<group>"; };
 		55596B2C13E275B5008DBD28 /* HNReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderTests.m; sourceTree = "<group>"; };
+		5581FB3713E2803D001369BE /* HNTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableViewCell.h; sourceTree = "<group>"; };
+		5581FB3813E2803D001369BE /* HNTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableViewCell.m; sourceTree = "<group>"; };
+		5581FB4313E2815B001369BE /* HNTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +145,9 @@
 				5518592E13E278F900778555 /* HNNewsListViewController.h */,
 				5518592F13E278F900778555 /* HNNewsListViewController.m */,
 				5518593013E278F900778555 /* HNNewsListViewController.xib */,
+				5581FB3713E2803D001369BE /* HNTableViewCell.h */,
+				5581FB3813E2803D001369BE /* HNTableViewCell.m */,
+				5581FB4313E2815B001369BE /* HNTableViewCell.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -335,6 +343,7 @@
 				55596B1113E275B5008DBD28 /* MainWindow.xib in Resources */,
 				55596B1713E275B5008DBD28 /* HNReaderViewController.xib in Resources */,
 				5518593313E278F900778555 /* HNNewsListViewController.xib in Resources */,
+				5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +398,7 @@
 				5518592B13E278D600778555 /* HNClient.m in Sources */,
 				5518593113E278F900778555 /* HNBaseViewController.m in Sources */,
 				5518593213E278F900778555 /* HNNewsListViewController.m in Sources */,
+				5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
