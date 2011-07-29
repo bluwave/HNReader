@@ -9,7 +9,7 @@
 #import "HNReaderViewController.h"
 #import "HNNewsListViewController.h"
 #import "HNStoryDetailViewController.h"
-#import <QuartzCore/QuartzCore.h>
+
 @interface HNReaderViewController()
 @property(retain, nonatomic) NSMutableArray * _viewsToNotifyOfOrientationChange;
 @end
@@ -119,13 +119,6 @@
     HNStoryDetailViewController * story = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
     [_viewsToNotifyOfOrientationChange addObject:story];
     
-    story.view.clipsToBounds = NO;
-    story.view.layer.masksToBounds = NO;
-
-    [story.view.layer setShadowColor:[[UIColor blackColor] CGColor]];
-    [story.view.layer setShadowOffset:CGSizeMake(3.0, 3.0)];
-    [story.view.layer setShadowOpacity:1.0];
-    [story.view.layer setShadowRadius:20];
     
     [self.view addSubview:story.view];
     [story slideInWithUrl:url withTitle:title];

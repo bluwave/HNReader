@@ -44,6 +44,7 @@
 		5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */; };
 		5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */; };
 		558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558B60D813E2AB660014B37C /* MessageUI.framework */; };
+		55E8E00A13E32C6800E72114 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E8E00913E32C6800E72114 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStoryDetailViewController.m; sourceTree = "<group>"; };
 		5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNStoryDetailViewController.xib; sourceTree = "<group>"; };
 		558B60D813E2AB660014B37C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		55E8E00913E32C6800E72114 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 		55596AEE13E275B5008DBD28 = {
 			isa = PBXGroup;
 			children = (
+				55E8E00D13E32C8000E72114 /* Resources */,
 				55596B0313E275B5008DBD28 /* HNReader */,
 				55596B2313E275B5008DBD28 /* HNReaderTests */,
 				55596AFC13E275B5008DBD28 /* Frameworks */,
@@ -284,6 +287,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		55E8E00C13E32C6C00E72114 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				55E8E00913E32C6800E72114 /* icon.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		55E8E00D13E32C8000E72114 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55E8E00C13E32C6C00E72114 /* images */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +376,7 @@
 				5518593313E278F900778555 /* HNNewsListViewController.xib in Resources */,
 				5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */,
 				5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */,
+				55E8E00A13E32C6800E72114 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

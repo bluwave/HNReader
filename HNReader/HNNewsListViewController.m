@@ -159,6 +159,7 @@
          
          [[HNReaderAppDelegate instance] toggleSpinner:NO withView:nil withLabel:nil withDetailLabel:nil];
      } ];
+    [api release];
 }
 
 -(void) rotate:(UIInterfaceOrientation) orientation

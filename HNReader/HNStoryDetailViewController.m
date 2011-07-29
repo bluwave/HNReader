@@ -8,7 +8,7 @@
 
 #import "HNStoryDetailViewController.h"
 #import "HNReaderAppDelegate.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 #define k_xOrigin 200
 
@@ -134,27 +134,41 @@
 #pragma mark public 
 -(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title
 {
+    [self loadUrl:url]; 
     self._currentUrl = url;
     self._currentTitle = title;
-    [self loadUrl:url];
-
+    
     CGRect frame = self.view.frame;
     frame.origin.x = k_xOrigin;
     
     self._titleBar.title = title;
     
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
-        self.view.frame = frame;
-    } completion:^(BOOL finished) {
+    [UIView animateWithDuration:0.4 animations:^(void) 
+    {
+        self.view.frame = frame;   
+        
+    } completion:^(BOOL finished) 
+    {
+        [UIView animateWithDuration:0.2 animations:^(void) 
+        {
+            self.view.clipsToBounds = NO;
+            self.view.layer.masksToBounds = NO;
+            [self.view.layer setShadowColor:[[UIColor blackColor] CGColor]];
+            [self.view.layer setShadowOffset:CGSizeMake(-10.0, 10.0)];
+            [self.view.layer setShadowOpacity:1.0];
+            [self.view.layer setShadowRadius:15];
+        } completion:^(BOOL finished) {
+        }];
         
     }];
+    
 }
 -(IBAction) close:(id) sender
 {
     CGRect frame = self.view.frame;
     frame.origin.x = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 768 : 1048;
     
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void) {
         self.view.frame = frame;
     } completion:^(BOOL finished) {
         
