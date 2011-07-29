@@ -58,6 +58,14 @@
     [super viewDidLoad];
     
     
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
+    swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    swipeGesture.delegate = self;
+    [_webView setUserInteractionEnabled:YES];
+    [_webView addGestureRecognizer:swipeGesture];
+    [swipeGesture release];
+    
+    
     if( ![MFMailComposeViewController canSendMail] )
     {
         // get rid of the email button
@@ -67,6 +75,8 @@
     self._webView.contentMode = UIViewContentModeScaleAspectFit;
     self._webView.scalesPageToFit = YES;
     _spinner.hidden = NO;
+    
+    
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -149,8 +159,10 @@
     } completion:^(BOOL finished) {
         
     }];
-    
-
+}
+- (void)swipeRightAction:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self close:nil];
 }
 -(void) loadUrl:(NSString * ) url
 {

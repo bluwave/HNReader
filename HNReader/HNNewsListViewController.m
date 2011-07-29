@@ -14,13 +14,15 @@
 
 @interface HNNewsListViewController()
 @property (retain, nonatomic) NSMutableArray * _newsPosts;
+@property (retain, nonatomic) NSString * _nextFeedId;
 
--(void) getNews;
+-(void) getNews:(NSString*) nextId;
 @end
 
 @implementation HNNewsListViewController
 @synthesize _newsPosts;
 @synthesize _tableView;
+@synthesize _nextFeedId;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,6 +35,7 @@
 
 - (void)dealloc
 {
+    [_nextFeedId release];
     [_tableView release];
     [_newsPosts release];
     [super dealloc];
@@ -52,7 +55,7 @@
 {
     [super viewDidLoad];
     self._newsPosts = [NSMutableArray array];
-    [self getNews];
+    [self getNews:nil];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -80,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_newsPosts count];    
+    return [_newsPosts count] + 1;    
 }
 
 
@@ -96,33 +99,47 @@
     }
     
     // Configure the cell.
-    
-    NSDictionary * dict = [_newsPosts objectAtIndex:indexPath.row];
-    cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
-    cell.url.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"url"]];
-    cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
+    if(indexPath.row == [_newsPosts count])
+    {
+        cell.title.text = @"...load more";
+        cell.url.text = @"";
+        cell.postDate.text = @"";
+    }
+    else
+    {
+        NSDictionary * dict = [_newsPosts objectAtIndex:indexPath.row];
+        cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
+        cell.url.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"url"]];
+        cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
-    NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
-    [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if(indexPath.row == [_newsPosts count])
+    {
+        [self getNews:_nextFeedId];
+    }
+    else
+    {
+        NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
+        NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
+        [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 #pragma mark - private helpers
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex 
 {
-    [self getNews];
+    [self getNews:nil] ;
 }
 
--(void) getNews
+-(void) getNews:(NSString*) nextId
 {
     HNClient * api = [[HNClient alloc] init];
     [[HNReaderAppDelegate instance] toggleSpinner:YES withView:self.view withLabel:@"Querying HN API" withDetailLabel:@"please wait..."];
-    [api getNews:nil withCompleteBlock:^(ApiResponse *resp)
+    [api getNews:nextId withCompleteBlock:^(ApiResponse *resp)
      {
          
          if(resp.hasError)
@@ -133,7 +150,10 @@
          {
              NSDictionary * data = [resp getDictionaryFromReceivedData];
              NSLog(@"data: %@", data);
-             self._newsPosts = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"items"]];
+             
+             [_newsPosts addObjectsFromArray:[[data objectForKey:@"items"] copy]];
+             //                 self._newsPosts = [[NSMutableArray alloc] initWithArray:[[data objectForKey:@"items"] copy]];
+             self._nextFeedId = [data objectForKey:@"nextId"];
              [self._tableView reloadData];
          }
          

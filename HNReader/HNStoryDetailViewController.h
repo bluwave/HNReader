@@ -10,7 +10,7 @@
 #import "HNBaseViewController.h"
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface HNStoryDetailViewController : HNBaseViewController<MFMailComposeViewControllerDelegate> {
+@interface HNStoryDetailViewController : HNBaseViewController<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate> {
     
 }
 @property(retain, nonatomic) IBOutlet UIWebView * _webView;
