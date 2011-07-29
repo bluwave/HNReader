@@ -19,5 +19,6 @@
 
 -(void) loadUrl:(NSString * ) url;
 -(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title;
+-(IBAction) close:(id) sender;
 -(IBAction) sendMail:(id) sender;
 @end

@@ -139,6 +139,19 @@
         
     }];
 }
+-(IBAction) close:(id) sender
+{
+    CGRect frame = self.view.frame;
+    frame.origin.x = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 768 : 1048;
+    
+    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationCurveEaseIn animations:^(void) {
+        self.view.frame = frame;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+
+}
 -(void) loadUrl:(NSString * ) url
 {
     [_webView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
