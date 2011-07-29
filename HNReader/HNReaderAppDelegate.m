@@ -2,28 +2,28 @@
 //  HNReaderAppDelegate.m
 //  HNReader
 //
-//  Created by slim on 7/20/11.
+//  Created by slim on 7/28/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "HNReaderAppDelegate.h"
 
-#import "HNViewManagerController.h"
+#import "HNReaderViewController.h"
 
 @implementation HNReaderAppDelegate
 
 
 @synthesize window=_window;
 
-@synthesize viewManager;
+@synthesize viewController=_viewController;
 
 @synthesize progressSpinner;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    // Add the split view controller's view to the window and display.
-    self.window.rootViewController = viewManager;
+     
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -69,12 +69,11 @@
 
 - (void)dealloc
 {
-    [_window release];
-    [viewManager release];
     [progressSpinner release];
+    [_window release];
+    [_viewController release];
     [super dealloc];
 }
-
 +(HNReaderAppDelegate *) instance
 {
     return (HNReaderAppDelegate*) [[UIApplication sharedApplication] delegate];

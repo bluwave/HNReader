@@ -8,7 +8,7 @@
 //http://api.ihackernews.com/
 
 #import "ApiResponse.h"
-#import "SBJson.h"
+#import "CJSONDeserializer.h"
 
 @implementation ApiResponse
 @synthesize error, receivedData, statusCode, apiErrorCode, hasError, errorMessage;
@@ -43,8 +43,12 @@
 	{
 		self.hasError = YES;
         
-        NSString * errorDictStr = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-        NSDictionary * errorDict = [errorDictStr JSONValue];
+//        NSString * errorDictStr = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+//        NSDictionary * errorDict = [errorDictStr JSONValue];
+        NSError * jsonParseError = nil;
+        id errorDict = [[CJSONDeserializer deserializer] deserialize:receivedData error:&jsonParseError];
+        if([errorDict isKindOfClass:[NSDictionary class]])
+
         
         if(errorDict)
 		{
@@ -96,14 +100,22 @@
 -(NSArray*) getArrayFromReceivedData
 {
 
-    NSString * str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    return [str JSONValue];
+//    NSString * str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+//    return [str JSONValue];
+    
+    NSError * deserializeError = nil;
+    NSArray * data = [[CJSONDeserializer deserializer] deserialize:self.receivedData error:&deserializeError];
+    return data;
 }
 -(NSDictionary*) getDictionaryFromReceivedData
 {
 
-    NSString * str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    return [str JSONValue];
+//    NSString * str = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+//    return [str JSONValue];
+    
+    NSError * deserializeError = nil;
+    NSDictionary * data = [[CJSONDeserializer deserializer] deserialize:self.receivedData error:&deserializeError];
+    return data;
 }
 
 @end

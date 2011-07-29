@@ -2,7 +2,7 @@
 //  main.m
 //  HNReader
 //
-//  Created by slim on 7/20/11.
+//  Created by slim on 7/28/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
