@@ -11,11 +11,13 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define k_xOrigin 200
+#define degreesToRadian(x) (M_PI * (x) / 180.0)
 
 @interface HNStoryDetailViewController()
 @property (retain, nonatomic) NSString * _currentTitle;
 @property (retain, nonatomic) NSString * _currentUrl;
 -(void) initView;
+-(void) addTabText:(NSString*) text;
 @end
 
 @implementation HNStoryDetailViewController
@@ -23,8 +25,11 @@
 @synthesize _titleBar;
 @synthesize _spinner;
 @synthesize _currentUrl, _currentTitle;
+@synthesize _tab, _tabText;
 - (void)dealloc
 {
+    [_tabText release];
+    [_tab release];
     [_currentTitle release];
     [_currentUrl release];
     [_spinner release];
@@ -106,10 +111,13 @@
 {
     CGRect frame = self.view.frame;
     frame.origin.x = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 768 : 1048;
-
+    
     frame.size.width = frame.origin.x - k_xOrigin;
     frame.size.height = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 1004 : 748;
     self.view.frame = frame;
+    
+    [self addTabText:@"foobar"];
+
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
@@ -129,6 +137,14 @@
     [controller setMessageBody:_currentUrl isHTML:YES];
     if (controller) [self presentModalViewController:controller animated:YES];
     [controller release];
+}
+-(void) addTabText:(NSString*) text
+{
+    CGRect tabFrame = self._tab.frame;
+    NSLog(@"tab frame: %f, %f, %f, %f", tabFrame.origin.x, tabFrame.origin.y, tabFrame.size.width, tabFrame.size.height);
+
+    _tabText.transform = CGAffineTransformMakeRotation(degreesToRadian(-90) );
+//    [_tab addSubview:lbl];
 }
 
 #pragma mark public 
@@ -180,13 +196,24 @@
 }
 -(void) loadUrl:(NSString * ) url
 {
-    [_webView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+
+    NSString *hasProtocol = @"http";
+    NSRange range = [url rangeOfString : hasProtocol];
+    if (range.location == NSNotFound) 
+    {
+        NSLog(@"not found %@", url);
+        [[[[UIAlertView alloc] initWithTitle:@"Sorry" message:[NSString stringWithFormat:@"This url ( %@ ) is not currently supported", url] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
+    }
+    else
+        [_webView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
 
 #pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
+    
+    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
     CGRect frame = self.view.frame;
     if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
     {
@@ -199,6 +226,7 @@
         frame.size.height = 748;
     }
     self.view.frame = frame;
+    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
 }
 
 

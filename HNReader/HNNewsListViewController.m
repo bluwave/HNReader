@@ -17,6 +17,7 @@
 @property (retain, nonatomic) NSString * _nextFeedId;
 
 -(void) getNews:(NSString*) nextId;
+-(BOOL) isValidUrl:(NSString * ) url;
 @end
 
 @implementation HNNewsListViewController
@@ -109,7 +110,8 @@
     {
         NSDictionary * dict = [_newsPosts objectAtIndex:indexPath.row];
         cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
-        cell.url.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"url"]];
+        NSString * url = [dict valueForKey:@"url"];
+        cell.url.text = [self isValidUrl:url ] ? [NSString stringWithFormat:@"%@", url] : @"[ comments ]";
         cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
     }
     return cell;
@@ -124,10 +126,14 @@
     else
     {
         NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
-        NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
-        [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        if([self isValidUrl:url])
+        {
+            NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
+            [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
+            
+        }        
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 #pragma mark - private helpers
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex 
@@ -176,5 +182,12 @@
         frame.size.height = 748;
     }
     self.view.frame = frame;
+}
+-(BOOL) isValidUrl:(NSString * ) url
+{
+    NSString *hasProtocol = @"http";
+    NSRange range = [url rangeOfString : hasProtocol];
+    return (range.location == NSNotFound) ? NO : YES;
+
 }
 @end

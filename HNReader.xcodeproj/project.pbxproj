@@ -45,6 +45,8 @@
 		5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */; };
 		558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558B60D813E2AB660014B37C /* MessageUI.framework */; };
 		55E8E00A13E32C6800E72114 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E8E00913E32C6800E72114 /* icon.png */; };
+		55FD98E213E36B7C00FD1C4A /* bluetab.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FD98E013E36B7C00FD1C4A /* bluetab.png */; };
+		55FD98E313E36B7C00FD1C4A /* orangetab.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FD98E113E36B7C00FD1C4A /* orangetab.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNStoryDetailViewController.xib; sourceTree = "<group>"; };
 		558B60D813E2AB660014B37C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		55E8E00913E32C6800E72114 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		55FD98E013E36B7C00FD1C4A /* bluetab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetab.png; path = Resources/images/bluetab.png; sourceTree = "<group>"; };
+		55FD98E113E36B7C00FD1C4A /* orangetab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orangetab.png; path = Resources/images/orangetab.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +294,8 @@
 		55E8E00C13E32C6C00E72114 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				55FD98E013E36B7C00FD1C4A /* bluetab.png */,
+				55FD98E113E36B7C00FD1C4A /* orangetab.png */,
 				55E8E00913E32C6800E72114 /* icon.png */,
 			);
 			name = images;
@@ -377,6 +383,8 @@
 				5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */,
 				5581FB5113E294EF001369BE /* HNStoryDetailViewController.xib in Resources */,
 				55E8E00A13E32C6800E72114 /* icon.png in Resources */,
+				55FD98E213E36B7C00FD1C4A /* bluetab.png in Resources */,
+				55FD98E313E36B7C00FD1C4A /* orangetab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
