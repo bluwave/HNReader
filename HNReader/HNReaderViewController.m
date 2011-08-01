@@ -9,18 +9,23 @@
 #import "HNReaderViewController.h"
 #import "HNNewsListViewController.h"
 #import "HNStoryDetailViewController.h"
+#import "HNReaderAppDelegate.h"
 
 @interface HNReaderViewController()
 @property(retain, nonatomic) NSMutableArray * _viewsToNotifyOfOrientationChange;
+@property(retain,nonatomic) HNNewsListViewController * _listView;
+- (void) rotateTheScreen;
 @end
 
 
 @implementation HNReaderViewController
 @synthesize _left, _right;
 @synthesize _viewsToNotifyOfOrientationChange;
+@synthesize _listView;
 
 - (void)dealloc
 {
+    [_listView release];
     [_viewsToNotifyOfOrientationChange release];
     [_right release];
     [_left release];
@@ -41,16 +46,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self._viewsToNotifyOfOrientationChange = [[NSMutableArray alloc] init ];
-    
-    HNNewsListViewController * list = [[HNNewsListViewController alloc] initWithNibName:@"HNNewsListViewController" bundle:nil];
-    [self.view addSubview:list.view];
-    [_viewsToNotifyOfOrientationChange addObject:list];
-    [list release];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    self._viewsToNotifyOfOrientationChange = [[NSMutableArray alloc] init ];
+    
+    self._listView = [[HNNewsListViewController alloc] initWithNibName:@"HNNewsListViewController" bundle:nil];
+    [self.view addSubview:_listView.view];
+    [_viewsToNotifyOfOrientationChange addObject:_listView];
+    
 }
 
 
@@ -80,7 +85,7 @@
 - (void) rotateTheScreen
 {
     CGRect lf = self._left.frame;
-    if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
+    if([[HNReaderAppDelegate instance] isOrientationPortrait] )
     {
         lf.size.width = 768;
         lf.size.height = 1004;
@@ -105,7 +110,6 @@
     }
 }
 
-
 #pragma mark - methods
 -(void) showUrl:(NSString*) url withTitle:(NSString *) title
 {
@@ -123,6 +127,10 @@
     [self.view addSubview:story.view];
     [story slideInWithUrl:url withTitle:title];
     [story release];
+}
+-(void) reloadList
+{
+    [self._listView reload];
 }
 
 @end

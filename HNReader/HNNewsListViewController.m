@@ -58,6 +58,14 @@
     self._newsPosts = [NSMutableArray array];
     [self getNews:nil];
     // Do any additional setup after loading the view from its nib.
+    
+    NSLog(@"viewDidLoad");
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSLog(@"viewDidAppear");
 }
 
 - (void)viewDidUnload
@@ -71,6 +79,16 @@
 {
     // Return YES for supported orientations
 	return YES;
+}
+
+#pragma mark - public 
+
+-(void) reload
+{
+    self._nextFeedId = nil;
+    self._newsPosts = [NSMutableArray array];
+    [_tableView reloadData];
+    [self getNews:nil];
 }
 
 #pragma mark - table view
@@ -155,7 +173,7 @@
          else
          {
              NSDictionary * data = [resp getDictionaryFromReceivedData];
-             NSLog(@"data: %@", data);
+//             NSLog(@"data: %@", data);
              
              [_newsPosts addObjectsFromArray:[[data objectForKey:@"items"] copy]];
              //                 self._newsPosts = [[NSMutableArray alloc] initWithArray:[[data objectForKey:@"items"] copy]];
@@ -171,7 +189,7 @@
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
     CGRect frame = self.view.frame;
-    if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
+    if( [[HNReaderAppDelegate instance] isOrientationPortrait])
     {
         frame.size.width = 768;
         frame.size.height = 1004;

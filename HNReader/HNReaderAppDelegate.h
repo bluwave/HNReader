@@ -20,6 +20,8 @@
 @property (nonatomic, retain) IBOutlet HNReaderViewController *viewController;
 
 @property(retain,nonatomic) ProgressSpinner * progressSpinner;
+
+
 +(HNReaderAppDelegate *) instance;
 -(void) toggleSpinner:(BOOL)sFlag withView:(UIView*) view withLabel:(NSString*) label withDetailLabel:(NSString*) detail;
 - (BOOL) isOrientationPortrait;
