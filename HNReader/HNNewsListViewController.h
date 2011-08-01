@@ -14,4 +14,5 @@
     
 }
 @property(retain, nonatomic) IBOutlet UITableView * _tableView;
+-(void) reload;
 @end

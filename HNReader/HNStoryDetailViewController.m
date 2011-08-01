@@ -66,8 +66,12 @@
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
     swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
     swipeGesture.delegate = self;
-    [_webView setUserInteractionEnabled:YES];
-    [_webView addGestureRecognizer:swipeGesture];
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:swipeGesture];
+        
+//    [_webView setUserInteractionEnabled:YES];
+//    [_webView addGestureRecognizer:swipeGesture];
+////    [_tab addGestureRecognizer:swipeGesture];
     [swipeGesture release];
     
     
@@ -110,10 +114,10 @@
 -(void) initView
 {
     CGRect frame = self.view.frame;
-    frame.origin.x = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 768 : 1048;
+    frame.origin.x = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1048;
     
     frame.size.width = frame.origin.x - k_xOrigin;
-    frame.size.height = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 1004 : 748;
+    frame.size.height = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 1004 : 748;
     self.view.frame = frame;
     
     [self addTabText:@"foobar"];
@@ -182,7 +186,7 @@
 -(IBAction) close:(id) sender
 {
     CGRect frame = self.view.frame;
-    frame.origin.x = ( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )  ? 768 : 1048;
+    frame.origin.x = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1048;
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void) {
         self.view.frame = frame;
@@ -213,9 +217,9 @@
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
     
-    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
+//    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
     CGRect frame = self.view.frame;
-    if( UIDeviceOrientationIsPortrait([UIDevice currentDevice].orientation) )
+    if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
     {
         frame.size.width = 768 - k_xOrigin;
         frame.size.height = 1004;
@@ -226,7 +230,7 @@
         frame.size.height = 748;
     }
     self.view.frame = frame;
-    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
+//    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
 }
 
 
