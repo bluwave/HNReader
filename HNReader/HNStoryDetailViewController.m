@@ -10,7 +10,11 @@
 #import "HNReaderAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define k_xOrigin 200
+#define k_xOrigin_Landscape 200
+#define k_xOrigin_Portrait 100
+#define kTabWidth 69
+
+
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
 
 @interface HNStoryDetailViewController()
@@ -26,8 +30,10 @@
 @synthesize _spinner;
 @synthesize _currentUrl, _currentTitle;
 @synthesize _tab, _tabText;
+@synthesize _spacer;
 - (void)dealloc
 {
+    [_spacer release];
     [_tabText release];
     [_tab release];
     [_currentTitle release];
@@ -116,7 +122,7 @@
     CGRect frame = self.view.frame;
     frame.origin.x = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1048;
     
-    frame.size.width = frame.origin.x - k_xOrigin;
+    frame.size.width = frame.origin.x - (( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait : k_xOrigin_Landscape);
     frame.size.height = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 1004 : 748;
     self.view.frame = frame;
     
@@ -159,7 +165,8 @@
     self._currentTitle = title;
     
     CGRect frame = self.view.frame;
-    frame.origin.x = k_xOrigin;
+    frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
+    frame.size.width = ( [[HNReaderAppDelegate instance] isOrientationPortrait] ) ? 768 - k_xOrigin_Portrait : 1024 - k_xOrigin_Landscape;
     
     self._titleBar.title = title;
     
@@ -211,27 +218,66 @@
     else
         [_webView loadRequest: [NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
+-(IBAction) toggleFullScreen:(id) sender
+{
+    CGRect frame = self.view.frame;
+    UIBarButtonItem * button =  (UIBarButtonItem *) sender;
 
+
+    if(_isFullScreen)
+    {
+        _isFullScreen = NO;
+        button.title = @"Full Screen";
+        frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
+        if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
+        {
+            frame.size.width = 768 - k_xOrigin_Portrait;
+        }
+        else
+        {
+            frame.size.width = 1024  -  k_xOrigin_Landscape;
+        }
+    }
+    else
+    {
+        _isFullScreen = YES;
+        button.title = @"Minimize";
+        frame.origin.x = 0;
+        frame.size.width =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1024;
+    }
+    
+    [UIView animateWithDuration:0.4 animations:^(void) {
+        self.view.frame = frame;
+    }];
+}
 
 #pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
     
-//    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
+    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
     CGRect frame = self.view.frame;
+    frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
+    if(_isFullScreen) frame.origin.x = 0;
     if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
     {
-        frame.size.width = 768 - k_xOrigin;
+        frame.size.width =  (_isFullScreen)  ? 768  : 768 - k_xOrigin_Portrait;
         frame.size.height = 1004;
+        self._spacer.width = 400;
     }
     else
     {
-        frame.size.width = 1048 - k_xOrigin;;
+        frame.size.width = (_isFullScreen)  ? 1024 : 1024  -  k_xOrigin_Landscape;
         frame.size.height = 748;
+        self._spacer.width = 575;
     }
     self.view.frame = frame;
-//    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
+    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
 }
 
-
+// ************ TODO **********************
+/*
+ 1. fix bug where if the window has slidden off the screen, and orientation changes, it will slide back in
+ 
+ */
 @end
