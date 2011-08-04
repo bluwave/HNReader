@@ -215,12 +215,12 @@
 -(IBAction) close:(id) sender
 {
     CGRect frame = self.view.frame;
-    frame.origin.x = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1048;
+    frame.origin.x = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 2400 : 2400;
     
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^(void) {
         self.view.frame = frame;
     } completion:^(BOOL finished) {
-        
+        _closed = YES;
     }];
 }
 - (void)swipeRightAction:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -280,25 +280,27 @@
 #pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
-    
-    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
-    CGRect frame = self.view.frame;
-    frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
-    if(_isFullScreen) frame.origin.x = 0;
-    if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
+    if(!_closed)
     {
-        frame.size.width =  (_isFullScreen)  ? 768  : 768 - k_xOrigin_Portrait;
-        frame.size.height = 1004;
-        self._spacer.width = (_isFullScreen) ? kSpacerWitdthPortrait_FULLSCREEN : kSpacerWitdthPortrait;
+        NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
+        CGRect frame = self.view.frame;
+        frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
+        if(_isFullScreen) frame.origin.x = 0;
+        if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
+        {
+            frame.size.width =  (_isFullScreen)  ? 768  : 768 - k_xOrigin_Portrait;
+            frame.size.height = 1004;
+            self._spacer.width = (_isFullScreen) ? kSpacerWitdthPortrait_FULLSCREEN : kSpacerWitdthPortrait;
+        }
+        else
+        {
+            frame.size.width = (_isFullScreen)  ? 1024 : 1024  -  k_xOrigin_Landscape;
+            frame.size.height = 748;
+            self._spacer.width = (_isFullScreen) ? kSpacerWitdthLandscape_FULLSCREEN : kSpacerWitdthLandscape;
+        }
+        self.view.frame = frame;
+        NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
     }
-    else
-    {
-        frame.size.width = (_isFullScreen)  ? 1024 : 1024  -  k_xOrigin_Landscape;
-        frame.size.height = 748;
-        self._spacer.width = (_isFullScreen) ? kSpacerWitdthLandscape_FULLSCREEN : kSpacerWitdthLandscape;
-    }
-    self.view.frame = frame;
-    NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
 }
 
 // ************ TODO **********************

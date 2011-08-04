@@ -14,6 +14,7 @@
 
 @interface HNStoryDetailViewController : HNBaseViewController<MFMailComposeViewControllerDelegate, UIGestureRecognizerDelegate, HNStarButtonProtocol> {
     BOOL _isFullScreen;
+    BOOL _closed;
 }
 @property(retain, nonatomic) IBOutlet UIWebView * _webView;
 @property(retain, nonatomic) IBOutlet UINavigationItem * _titleBar;
