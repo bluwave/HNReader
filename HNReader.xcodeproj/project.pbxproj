@@ -39,6 +39,13 @@
 		55596B2813E275B5008DBD28 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55596B2613E275B5008DBD28 /* InfoPlist.strings */; };
 		55596B2B13E275B5008DBD28 /* HNReaderTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 55596B2A13E275B5008DBD28 /* HNReaderTests.h */; };
 		55596B2D13E275B5008DBD28 /* HNReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B2C13E275B5008DBD28 /* HNReaderTests.m */; };
+		5576BBA713E9BA29008F95BA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5576BBA613E9BA29008F95BA /* CoreData.framework */; };
+		5576BBB613E9C1A3008F95BA /* SavedStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576BBB513E9C1A3008F95BA /* SavedStory.m */; };
+		5576BBBD13E9CFF3008F95BA /* HNStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576BBBC13E9CFF2008F95BA /* HNStarButton.m */; };
+		5576BBD113E9FDC4008F95BA /* HNReader.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5576BBCF13E9FDC4008F95BA /* HNReader.xcdatamodeld */; };
+		5576BBD413EA0EDC008F95BA /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5576BBD313EA0EDC008F95BA /* DataManager.m */; };
+		5576BBD713EA4D3A008F95BA /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576BBD513EA4D3A008F95BA /* star_off.png */; };
+		5576BBD813EA4D3A008F95BA /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576BBD613EA4D3A008F95BA /* star_on.png */; };
 		5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB3813E2803D001369BE /* HNTableViewCell.m */; };
 		5581FB4413E2815B001369BE /* HNTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5581FB4313E2815B001369BE /* HNTableViewCell.xib */; };
 		5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */; };
@@ -114,6 +121,16 @@
 		55596B2913E275B5008DBD28 /* HNReaderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HNReaderTests-Prefix.pch"; sourceTree = "<group>"; };
 		55596B2A13E275B5008DBD28 /* HNReaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderTests.h; sourceTree = "<group>"; };
 		55596B2C13E275B5008DBD28 /* HNReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderTests.m; sourceTree = "<group>"; };
+		5576BBA613E9BA29008F95BA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5576BBB413E9C1A3008F95BA /* SavedStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedStory.h; sourceTree = "<group>"; };
+		5576BBB513E9C1A3008F95BA /* SavedStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedStory.m; sourceTree = "<group>"; };
+		5576BBBB13E9CFF2008F95BA /* HNStarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNStarButton.h; sourceTree = "<group>"; };
+		5576BBBC13E9CFF2008F95BA /* HNStarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNStarButton.m; sourceTree = "<group>"; };
+		5576BBD013E9FDC4008F95BA /* HNReader.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HNReader.xcdatamodel; sourceTree = "<group>"; };
+		5576BBD213EA0EDC008F95BA /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		5576BBD313EA0EDC008F95BA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		5576BBD513EA4D3A008F95BA /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_off.png; path = Resources/images/star_off.png; sourceTree = "<group>"; };
+		5576BBD613EA4D3A008F95BA /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_on.png; path = Resources/images/star_on.png; sourceTree = "<group>"; };
 		5581FB3713E2803D001369BE /* HNTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNTableViewCell.h; sourceTree = "<group>"; };
 		5581FB3813E2803D001369BE /* HNTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNTableViewCell.m; sourceTree = "<group>"; };
 		5581FB4313E2815B001369BE /* HNTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HNTableViewCell.xib; sourceTree = "<group>"; };
@@ -131,6 +148,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5576BBA713E9BA29008F95BA /* CoreData.framework in Frameworks */,
 				558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */,
 				55596AFE13E275B5008DBD28 /* UIKit.framework in Frameworks */,
 				55596B0013E275B5008DBD28 /* Foundation.framework in Frameworks */,
@@ -165,6 +183,8 @@
 				5581FB4D13E294EF001369BE /* HNStoryDetailViewController.h */,
 				5581FB4E13E294EF001369BE /* HNStoryDetailViewController.m */,
 				5581FB4F13E294EF001369BE /* HNStoryDetailViewController.xib */,
+				5576BBBB13E9CFF2008F95BA /* HNStarButton.h */,
+				5576BBBC13E9CFF2008F95BA /* HNStarButton.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -213,6 +233,7 @@
 		55596AEE13E275B5008DBD28 = {
 			isa = PBXGroup;
 			children = (
+				5576BBCF13E9FDC4008F95BA /* HNReader.xcdatamodeld */,
 				55E8E00D13E32C8000E72114 /* Resources */,
 				55596B0313E275B5008DBD28 /* HNReader */,
 				55596B2313E275B5008DBD28 /* HNReaderTests */,
@@ -233,6 +254,7 @@
 		55596AFC13E275B5008DBD28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5576BBA613E9BA29008F95BA /* CoreData.framework */,
 				558B60D813E2AB660014B37C /* MessageUI.framework */,
 				55596AFD13E275B5008DBD28 /* UIKit.framework */,
 				55596AFF13E275B5008DBD28 /* Foundation.framework */,
@@ -244,6 +266,7 @@
 		55596B0313E275B5008DBD28 /* HNReader */ = {
 			isa = PBXGroup;
 			children = (
+				5576BBB313E9C18B008F95BA /* CoreData */,
 				551858FE13E2784600778555 /* API */,
 				551858FD13E2783000778555 /* JSON */,
 				551858FB13E2781F00778555 /* ViewControllers */,
@@ -291,9 +314,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5576BBB313E9C18B008F95BA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5576BBB413E9C1A3008F95BA /* SavedStory.h */,
+				5576BBB513E9C1A3008F95BA /* SavedStory.m */,
+				5576BBD213EA0EDC008F95BA /* DataManager.h */,
+				5576BBD313EA0EDC008F95BA /* DataManager.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		55E8E00C13E32C6C00E72114 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5576BBD513EA4D3A008F95BA /* star_off.png */,
+				5576BBD613EA4D3A008F95BA /* star_on.png */,
 				55FD98E013E36B7C00FD1C4A /* bluetab.png */,
 				55FD98E113E36B7C00FD1C4A /* orangetab.png */,
 				55E8E00913E32C6800E72114 /* icon.png */,
@@ -385,6 +421,8 @@
 				55E8E00A13E32C6800E72114 /* icon.png in Resources */,
 				55FD98E213E36B7C00FD1C4A /* bluetab.png in Resources */,
 				55FD98E313E36B7C00FD1C4A /* orangetab.png in Resources */,
+				5576BBD713EA4D3A008F95BA /* star_off.png in Resources */,
+				5576BBD813EA4D3A008F95BA /* star_on.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +479,10 @@
 				5518593213E278F900778555 /* HNNewsListViewController.m in Sources */,
 				5581FB3913E2803D001369BE /* HNTableViewCell.m in Sources */,
 				5581FB5013E294EF001369BE /* HNStoryDetailViewController.m in Sources */,
+				5576BBB613E9C1A3008F95BA /* SavedStory.m in Sources */,
+				5576BBBD13E9CFF3008F95BA /* HNStarButton.m in Sources */,
+				5576BBD113E9FDC4008F95BA /* HNReader.xcdatamodeld in Sources */,
+				5576BBD413EA0EDC008F95BA /* DataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +679,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5576BBCF13E9FDC4008F95BA /* HNReader.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5576BBD013E9FDC4008F95BA /* HNReader.xcdatamodel */,
+			);
+			currentVersion = 5576BBD013E9FDC4008F95BA /* HNReader.xcdatamodel */;
+			path = HNReader.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 55596AF013E275B5008DBD28 /* Project object */;
 }

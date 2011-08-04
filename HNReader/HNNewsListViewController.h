@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HNBaseViewController.h"
+#import "HNStarButton.h"
+typedef enum VIEW{FRONTPAGE, NEW, SAVED } ViewState;
 
-@interface HNNewsListViewController : HNBaseViewController 
+@interface HNNewsListViewController : HNBaseViewController <HNStarButtonProtocol>
 {
-    
+    ViewState _viewState;
 }
 @property(retain, nonatomic) IBOutlet UITableView * _tableView;
 -(void) reload;
+-(IBAction) segmentIndexChanged:(id)sender;
 @end

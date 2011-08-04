@@ -21,6 +21,13 @@
 
 @property(retain,nonatomic) ProgressSpinner * progressSpinner;
 
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+// core data selectors
+- (void)saveContext;
+- (NSURL *)applicationDocumentsDirectory;
 
 +(HNReaderAppDelegate *) instance;
 -(void) toggleSpinner:(BOOL)sFlag withView:(UIView*) view withLabel:(NSString*) label withDetailLabel:(NSString*) detail;

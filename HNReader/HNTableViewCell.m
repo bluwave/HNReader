@@ -10,7 +10,7 @@
 
 
 @implementation HNTableViewCell
-@synthesize title, url, postDate;
+@synthesize title, url, postDate,star;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -31,6 +31,7 @@
 
 - (void)dealloc
 {
+    [star release];
     [title release];
     [postDate release];
     [url release];

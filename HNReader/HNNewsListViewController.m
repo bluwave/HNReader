@@ -11,19 +11,31 @@
 #import "HNTableViewCell.h"
 #import "HNReaderAppDelegate.h"
 #import "HNReaderViewController.h"
+#import "SavedStory.h"
+#import "DataManager.h"
+
+
 
 @interface HNNewsListViewController()
 @property (retain, nonatomic) NSMutableArray * _newsPosts;
 @property (retain, nonatomic) NSString * _nextFeedId;
+@property (retain, nonatomic) NSArray * _savedPosts;
+@property(retain, nonatomic) DataManager * _dataMan;
+
+
 
 -(void) getNews:(NSString*) nextId;
 -(BOOL) isValidUrl:(NSString * ) url;
+-(void) refreshSaved;
 @end
 
 @implementation HNNewsListViewController
 @synthesize _newsPosts;
 @synthesize _tableView;
 @synthesize _nextFeedId;
+@synthesize _savedPosts;
+@synthesize _dataMan;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,6 +48,9 @@
 
 - (void)dealloc
 {
+
+    [_dataMan release];
+    [_savedPosts release];
     [_nextFeedId release];
     [_tableView release];
     [_newsPosts release];
@@ -56,7 +71,10 @@
 {
     [super viewDidLoad];
     self._newsPosts = [NSMutableArray array];
+    self._dataMan  = [[DataManager alloc] init];
     [self getNews:nil];
+    
+    
     // Do any additional setup after loading the view from its nib.
     
     NSLog(@"viewDidLoad");
@@ -102,7 +120,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_newsPosts count] + 1;    
+    int count = [_newsPosts count];
+    NSLog(@"_newsPosts count: %d", [_newsPosts count]);
+    if (_viewState == FRONTPAGE) 
+        count++;
+    return count;
 }
 
 
@@ -123,40 +145,82 @@
         cell.title.text = @"...load more";
         cell.url.text = @"";
         cell.postDate.text = @"";
+        cell.star.hidden = YES;
     }
     else
     {
+        cell.star.hidden = NO;
+        cell.star.delegate= self;
+        cell.star.tag = indexPath.row;
+        
         NSDictionary * dict = [_newsPosts objectAtIndex:indexPath.row];
-        cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
         NSString * url = [dict valueForKey:@"url"];
+        NSPredicate * filter = [NSPredicate predicateWithFormat:@" url == %@ ", url];
+        NSArray * contains = [_savedPosts filteredArrayUsingPredicate:filter];
+        if([contains count] > 0)
+            [cell.star toggleChecked:YES];
+        
+        cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
         cell.url.text = [self isValidUrl:url ] ? [NSString stringWithFormat:@"%@", url] : @"[ comments ]";
         cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
     }
     return cell;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == [_newsPosts count])
+    if(indexPath.row == [_newsPosts count] )
     {
         [self getNews:_nextFeedId];
     }
     else
     {
-        NSString * url = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"url"];
+        NSDictionary * dict= [_newsPosts objectAtIndex:indexPath.row];
+        NSString * url = [dict objectForKey:@"url"];
         if([self isValidUrl:url])
         {
-            NSString * title = [[_newsPosts objectAtIndex:indexPath.row] objectForKey:@"title"];
+            NSString * title = [dict objectForKey:@"title"];
             [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
             
         }        
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+-(IBAction) segmentIndexChanged:(id)sender
+{
+    UISegmentedControl * seg = (UISegmentedControl *) sender;
+    int index = seg.selectedSegmentIndex;
+    _viewState = index;
+    switch (index) {
+        case FRONTPAGE:
+            self._nextFeedId = nil;
+            self._newsPosts = [NSMutableArray array];
+            [self getNews:_nextFeedId];
+            break;
+        case NEW:
+            break;
+        case SAVED:
+            [self refreshSaved];
+            self._newsPosts = [_savedPosts mutableCopy];
+            [_tableView reloadData];
+            break;
+    }
+}
+
+
 #pragma mark - private helpers
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex 
 {
-    [self getNews:nil] ;
+    switch (buttonIndex) {
+        case 0:
+            break;
+        case 1:
+            [self getNews:_nextFeedId] ;            
+            break;
+    }
+
 }
 
 -(void) getNews:(NSString*) nextId
@@ -168,16 +232,17 @@
          
          if(resp.hasError)
          {
-             [[[[UIAlertView alloc] initWithTitle:@"Api Service Unavailable" message:@"Click OK to try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
+             [[[[UIAlertView alloc] initWithTitle:@"Api Service Unavailable" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Try Again", nil] autorelease] show];
          }
          else
          {
              NSDictionary * data = [resp getDictionaryFromReceivedData];
 //             NSLog(@"data: %@", data);
-             
+
              [_newsPosts addObjectsFromArray:[[data objectForKey:@"items"] copy]];
              //                 self._newsPosts = [[NSMutableArray alloc] initWithArray:[[data objectForKey:@"items"] copy]];
              self._nextFeedId = [data objectForKey:@"nextId"];
+             [self refreshSaved];
              [self._tableView reloadData];
          }
          
@@ -207,5 +272,29 @@
     NSRange range = [url rangeOfString : hasProtocol];
     return (range.location == NSNotFound) ? NO : YES;
 
+}
+
+-(void) HNStarButton:(HNStarButton *)button toggled:(BOOL)isChecked
+{
+    NSDictionary * post = [_newsPosts objectAtIndex:button.tag];
+    if( isChecked )
+    {
+        [_dataMan savePost:post];
+    }
+    else
+    {
+        [_dataMan deletePost: [post objectForKey:@"url"]  ];
+        [self refreshSaved];
+        self._newsPosts = [_savedPosts mutableCopy];
+        
+        [_tableView reloadData];
+
+    }
+//    [self refreshSaved];
+}
+
+-(void) refreshSaved
+{
+    self._savedPosts = [_dataMan getSavedPosts];
 }
 @end
