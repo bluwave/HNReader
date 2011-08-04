@@ -111,7 +111,7 @@
 }
 
 #pragma mark - methods
--(void) showUrl:(NSString*) url withTitle:(NSString *) title
+-(void) pushView:(HNBaseViewController*) view
 {
     for(int i= [_viewsToNotifyOfOrientationChange count]-1; i > 0; i--)
     {
@@ -119,15 +119,11 @@
         [v.view removeFromSuperview];
         [_viewsToNotifyOfOrientationChange removeObject:v];
     }
-    
-    HNStoryDetailViewController * story = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
-    [_viewsToNotifyOfOrientationChange addObject:story];
-    
-    
-    [self.view addSubview:story.view];
-    [story slideInWithUrl:url withTitle:title];
-    [story release];
+
+    [_viewsToNotifyOfOrientationChange addObject:view];
+    [self.view addSubview:view.view];
 }
+
 -(void) reloadList
 {
     [self._listView reload];

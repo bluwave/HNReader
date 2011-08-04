@@ -11,8 +11,14 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define k_xOrigin_Landscape 200
-#define k_xOrigin_Portrait 100
+#define k_xOrigin_Portrait 170
 #define kTabWidth 69
+
+#define kSpacerWitdthPortrait 355
+#define kSpacerWitdthLandscape 585
+
+#define kSpacerWitdthPortrait_FULLSCREEN 535
+#define kSpacerWitdthLandscape_FULLSCREEN 800
 
 
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
@@ -31,8 +37,12 @@
 @synthesize _currentUrl, _currentTitle;
 @synthesize _tab, _tabText;
 @synthesize _spacer;
+@synthesize delegate;
+@synthesize star;
 - (void)dealloc
 {
+    [star release];
+    [delegate release];
     [_spacer release];
     [_tabText release];
     [_tab release];
@@ -126,7 +136,8 @@
     frame.size.height = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 1004 : 748;
     self.view.frame = frame;
     
-    [self addTabText:@"foobar"];
+// [self addTabText:@"foobar"];
+    self.star.delegate = self;
 
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
@@ -156,6 +167,17 @@
     _tabText.transform = CGAffineTransformMakeRotation(degreesToRadian(-90) );
 //    [_tab addSubview:lbl];
 }
+-(void) HNStarButton:(HNStarButton *)button toggled:(BOOL)isChecked
+{
+    NSLog(@"star clicked");
+    if( isChecked )
+    {
+    
+    }
+    else
+    {
+    }
+}
 
 #pragma mark public 
 -(void) slideInWithUrl:(NSString * )url withTitle:(NSString *) title
@@ -167,7 +189,7 @@
     CGRect frame = self.view.frame;
     frame.origin.x =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? k_xOrigin_Portrait   : k_xOrigin_Landscape ;
     frame.size.width = ( [[HNReaderAppDelegate instance] isOrientationPortrait] ) ? 768 - k_xOrigin_Portrait : 1024 - k_xOrigin_Landscape;
-    
+    self._spacer.width = ( [[HNReaderAppDelegate instance] isOrientationPortrait] ) ? kSpacerWitdthPortrait : kSpacerWitdthLandscape;
     self._titleBar.title = title;
     
     [UIView animateWithDuration:0.4 animations:^(void) 
@@ -232,10 +254,12 @@
         if( [[HNReaderAppDelegate instance] isOrientationPortrait] )
         {
             frame.size.width = 768 - k_xOrigin_Portrait;
+            self._spacer.width =kSpacerWitdthPortrait;
         }
         else
         {
             frame.size.width = 1024  -  k_xOrigin_Landscape;
+            self._spacer.width =kSpacerWitdthLandscape;
         }
     }
     else
@@ -244,6 +268,8 @@
         button.title = @"Minimize";
         frame.origin.x = 0;
         frame.size.width =  ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ? 768 : 1024;
+        self._spacer.width = ( [[HNReaderAppDelegate instance] isOrientationPortrait] )  ?  kSpacerWitdthPortrait_FULLSCREEN : kSpacerWitdthLandscape_FULLSCREEN;
+
     }
     
     [UIView animateWithDuration:0.4 animations:^(void) {
@@ -263,13 +289,13 @@
     {
         frame.size.width =  (_isFullScreen)  ? 768  : 768 - k_xOrigin_Portrait;
         frame.size.height = 1004;
-        self._spacer.width = 400;
+        self._spacer.width = (_isFullScreen) ? kSpacerWitdthPortrait_FULLSCREEN : kSpacerWitdthPortrait;
     }
     else
     {
         frame.size.width = (_isFullScreen)  ? 1024 : 1024  -  k_xOrigin_Landscape;
         frame.size.height = 748;
-        self._spacer.width = 575;
+        self._spacer.width = (_isFullScreen) ? kSpacerWitdthLandscape_FULLSCREEN : kSpacerWitdthLandscape;
     }
     self.view.frame = frame;
     NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);

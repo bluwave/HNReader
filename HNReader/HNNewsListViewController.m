@@ -13,6 +13,7 @@
 #import "HNReaderViewController.h"
 #import "SavedStory.h"
 #import "DataManager.h"
+#import "HNStoryDetailViewController.h"
 
 
 
@@ -181,7 +182,10 @@
         if([self isValidUrl:url])
         {
             NSString * title = [dict objectForKey:@"title"];
-            [[HNReaderAppDelegate instance].viewController showUrl:url withTitle:title];
+            HNStoryDetailViewController * detail = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
+            [[HNReaderAppDelegate instance].viewController pushView:detail];
+            [detail slideInWithUrl:url withTitle:title];
+            detail.delegate = self;
             
         }        
     }
