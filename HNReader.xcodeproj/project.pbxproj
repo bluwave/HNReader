@@ -172,6 +172,12 @@
 		551858FB13E2781F00778555 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				55596B0F13E275B5008DBD28 /* MainWindow.xib */,
+				55596B1513E275B5008DBD28 /* HNReaderViewController.xib */,
+				551858FF13E2785A00778555 /* ProgressSpinner.h */,
+				5518590013E2785A00778555 /* ProgressSpinner.m */,
+				55596B1213E275B5008DBD28 /* HNReaderViewController.h */,
+				55596B1313E275B5008DBD28 /* HNReaderViewController.m */,
 				5518592C13E278F900778555 /* HNBaseViewController.h */,
 				5518592D13E278F900778555 /* HNBaseViewController.m */,
 				5518592E13E278F900778555 /* HNNewsListViewController.h */,
@@ -271,13 +277,7 @@
 				551858FD13E2783000778555 /* JSON */,
 				551858FB13E2781F00778555 /* ViewControllers */,
 				55596B0C13E275B5008DBD28 /* HNReaderAppDelegate.h */,
-				551858FF13E2785A00778555 /* ProgressSpinner.h */,
-				5518590013E2785A00778555 /* ProgressSpinner.m */,
 				55596B0D13E275B5008DBD28 /* HNReaderAppDelegate.m */,
-				55596B0F13E275B5008DBD28 /* MainWindow.xib */,
-				55596B1213E275B5008DBD28 /* HNReaderViewController.h */,
-				55596B1313E275B5008DBD28 /* HNReaderViewController.m */,
-				55596B1513E275B5008DBD28 /* HNReaderViewController.xib */,
 				55596B0413E275B5008DBD28 /* Supporting Files */,
 			);
 			path = HNReader;

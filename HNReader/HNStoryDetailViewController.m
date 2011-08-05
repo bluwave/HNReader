@@ -277,6 +277,22 @@
     }];
 }
 
+-(IBAction) toggleReadability:(id)sender
+{
+    if(_readabilityOn)
+    {
+        if([_webView canGoBack])
+            [_webView goBack];
+        _readabilityOn = NO;
+    }
+    else
+    {
+        _readabilityOn = YES;
+        [self._webView stringByEvaluatingJavaScriptFromString:kTextOnlyJS];        
+    }
+
+}
+
 #pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
 {
