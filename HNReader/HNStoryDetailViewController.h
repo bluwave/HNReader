@@ -25,6 +25,7 @@
 @property(retain, nonatomic) IBOutlet UIImageView * _tab;
 @property(retain, nonatomic) IBOutlet UILabel * _tabText;
 @property(retain, nonatomic) IBOutlet UIBarButtonItem * _spacer;
+@property(retain, nonatomic) IBOutlet UIToolbar * _bottomToolbar;
 @property(retain, nonatomic) HNNewsListViewController * delegate;
 @property(retain,nonatomic) IBOutlet HNStarButton * star;
 -(void) loadUrl:(NSString * ) url;

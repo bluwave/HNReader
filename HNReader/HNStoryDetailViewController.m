@@ -28,6 +28,10 @@
 @property (retain, nonatomic) NSString * _currentUrl;
 -(void) initView;
 -(void) addTabText:(NSString*) text;
+-(void) buildToolbar;
+
+-(IBAction) broswerGoBack:(id) sender;
+-(IBAction) broswerGoForward:(id) sender;
 @end
 
 @implementation HNStoryDetailViewController
@@ -39,8 +43,10 @@
 @synthesize _spacer;
 @synthesize delegate;
 @synthesize star;
+@synthesize _bottomToolbar;
 - (void)dealloc
 {
+    [_bottomToolbar release];
     [star release];
     [delegate release];
     [_spacer release];
@@ -101,7 +107,7 @@
     self._webView.scalesPageToFit = YES;
     _spinner.hidden = NO;
     
-    
+    [self buildToolbar];
     
     // Do any additional setup after loading the view from its nib.
 }
@@ -177,6 +183,41 @@
     else
     {
     }
+}
+
+-(void) buildToolbar
+{
+    UIBarButtonItem * fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    UIBarButtonItem * fixedSpace2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    fixedSpace2.width = 300;
+    UIBarButtonItem * spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem * close = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(close:)];
+    UIBarButtonItem * sendMail = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(sendMail:)];
+    UIBarButtonItem * readAble = [[UIBarButtonItem alloc] initWithTitle:@"R" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleReadability:)];
+    UIBarButtonItem * fullScreenButton = [[UIBarButtonItem alloc] initWithTitle:@"FullScreen" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleFullScreen:)];
+    UIBarButtonItem * back = [[UIBarButtonItem alloc] initWithTitle:@"◄" style:UIBarButtonItemStylePlain target:self action:@selector(broswerGoBack:)];
+    UIBarButtonItem * forward = [[UIBarButtonItem alloc] initWithTitle:@"►" style:UIBarButtonItemStylePlain target:self action:@selector(broswerGoForward:)];
+    
+    HNStarButton * savePost  = [[HNStarButton alloc] init];
+    UIBarButtonItem * saveContainer = [[UIBarButtonItem alloc] initWithCustomView:savePost];
+    
+    
+    
+    NSArray * items = [NSArray arrayWithObjects: fixedSpace, back , fixedSpace, forward, fixedSpace2, spacer,  spacer, spacer, spacer, saveContainer, spacer, fullScreenButton,  spacer, readAble  , spacer, sendMail,spacer, close, nil];
+    [spacer release];
+    [close release];
+    [sendMail release];
+    [savePost release];
+    [saveContainer release];
+    [readAble release];
+    [fullScreenButton release];
+    [back release];
+    [forward release];
+    [fixedSpace2 release];
+    
+
+    
+    [self._bottomToolbar setItems:items animated:YES];
 }
 
 #pragma mark public 
@@ -292,6 +333,21 @@
     }
 
 }
+-(IBAction) broswerGoBack:(id) sender
+{
+    if([_webView canGoBack])
+    {
+        [_webView goBack];
+    }
+}
+-(IBAction) broswerGoForward:(id) sender
+{
+    if([_webView canGoForward])
+    {
+        [_webView goForward];
+    }
+
+}
 
 #pragma mark orientation
 -(void) rotate:(UIInterfaceOrientation) orientation
@@ -318,6 +374,8 @@
         NSLog(@"webview width: %f view width: %f", self._webView.frame.size.width, self.view.frame.size.width);
     }
 }
+
+
 
 // ************ TODO **********************
 /*
