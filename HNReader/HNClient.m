@@ -54,10 +54,12 @@
     
 }
 
--(void) getNews:(NSString*) nextId withCompleteBlock:(void (^)(ApiResponse * resp) )complete
+-(void) getNews:(NSString*) nextId withType:(int) whichType withCompleteBlock:(void (^)(ApiResponse * resp) )complete
 {
+    NSString * type = (whichType == 1) ? @"new" : @"page"; 
+    
     NSString * next = (nextId) ? [NSString stringWithFormat:@"/%@", nextId] : @"";
-    NSString * url = [NSString stringWithFormat:@"http://api.ihackernews.com/page%@", next];
+    NSString * url = [NSString stringWithFormat:@"http://api.ihackernews.com/%@%@", type , next];
     [self handleRequestWithUrl:url withCompleteBlock:complete];
 }
 @end

@@ -14,5 +14,6 @@
 }
 
 
--(void) getNews:(NSString*) nextId withCompleteBlock:(void (^)(ApiResponse * resp) )complete;
+-(void) getNews:(NSString*) nextId withType:(int) whichType withCompleteBlock:(void (^)(ApiResponse * resp) )complete;
+
 @end

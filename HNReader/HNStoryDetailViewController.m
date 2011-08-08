@@ -14,11 +14,11 @@
 #define k_xOrigin_Portrait 170
 #define kTabWidth 69
 
-#define kSpacerWitdthPortrait 355
-#define kSpacerWitdthLandscape 585
+#define kSpacerWitdthPortrait 315
+#define kSpacerWitdthLandscape 540
 
-#define kSpacerWitdthPortrait_FULLSCREEN 535
-#define kSpacerWitdthLandscape_FULLSCREEN 800
+#define kSpacerWitdthPortrait_FULLSCREEN 500
+#define kSpacerWitdthLandscape_FULLSCREEN 750
 
 
 #define degreesToRadian(x) (M_PI * (x) / 180.0)

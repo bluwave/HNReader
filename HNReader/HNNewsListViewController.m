@@ -25,7 +25,7 @@
 
 
 
--(void) getNews:(NSString*) nextId;
+-(void) getNews:(NSString*) nextId type:(ViewState) whichType;
 -(BOOL) isValidUrl:(NSString * ) url;
 -(void) refreshSaved;
 @end
@@ -73,7 +73,7 @@
     [super viewDidLoad];
     self._newsPosts = [NSMutableArray array];
     self._dataMan  = [[DataManager alloc] init];
-    [self getNews:nil];
+    [self getNews:nil type:FRONTPAGE];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -107,7 +107,7 @@
     self._nextFeedId = nil;
     self._newsPosts = [NSMutableArray array];
     [_tableView reloadData];
-    [self getNews:nil];
+    [self getNews:nil type: _viewState];
 }
 
 #pragma mark - table view
@@ -123,7 +123,7 @@
 {
     int count = [_newsPosts count];
     NSLog(@"_newsPosts count: %d", [_newsPosts count]);
-    if (_viewState == FRONTPAGE) 
+    if (_viewState == FRONTPAGE || NEW) 
         count++;
     return count;
 }
@@ -173,7 +173,7 @@
 {
     if(indexPath.row == [_newsPosts count] )
     {
-        [self getNews:_nextFeedId];
+        [self getNews:_nextFeedId type:_viewState];
     }
     else
     {
@@ -201,9 +201,12 @@
         case FRONTPAGE:
             self._nextFeedId = nil;
             self._newsPosts = [NSMutableArray array];
-            [self getNews:_nextFeedId];
+            [self getNews:_nextFeedId type:FRONTPAGE];
             break;
         case NEW:
+            self._nextFeedId = nil;
+            self._newsPosts = [NSMutableArray array];
+            [self getNews:_nextFeedId type:NEW];
             break;
         case SAVED:
             [self refreshSaved];
@@ -221,17 +224,17 @@
         case 0:
             break;
         case 1:
-            [self getNews:_nextFeedId] ;            
+            [self getNews:_nextFeedId type:_viewState] ;            
             break;
     }
 
 }
 
--(void) getNews:(NSString*) nextId
+-(void) getNews:(NSString*) nextId type:(ViewState) whichType
 {
     HNClient * api = [[HNClient alloc] init];
     [[HNReaderAppDelegate instance] toggleSpinner:YES withView:self.view withLabel:@"Querying HN API" withDetailLabel:@"please wait..."];
-    [api getNews:nextId withCompleteBlock:^(ApiResponse *resp)
+    [api getNews:nextId withType:whichType  withCompleteBlock:^(ApiResponse *resp)
      {
          
          if(resp.hasError)
