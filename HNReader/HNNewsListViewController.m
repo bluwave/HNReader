@@ -28,6 +28,7 @@
 -(void) getNews:(NSString*) nextId type:(ViewState) whichType;
 -(BOOL) isValidUrl:(NSString * ) url;
 -(void) refreshSaved;
+-(NSString*) getHNUrl:(NSString*) url_;
 @end
 
 @implementation HNNewsListViewController
@@ -162,7 +163,7 @@
             [cell.star toggleChecked:YES];
         
         cell.title.text  = [NSString stringWithFormat:@"%@", [dict valueForKey:@"title"]];
-        cell.url.text = [self isValidUrl:url ] ? [NSString stringWithFormat:@"%@", url] : @"[ comments ]";
+        cell.url.text = [self isValidUrl:url ] ? [NSString stringWithFormat:@"%@", url] : [self getHNUrl:url];
         cell.postDate.text = [NSString stringWithFormat:@"%@", [dict valueForKey:@"postedAgo"]];
     }
     return cell;
@@ -179,15 +180,16 @@
     {
         NSDictionary * dict= [_newsPosts objectAtIndex:indexPath.row];
         NSString * url = [dict objectForKey:@"url"];
-        if([self isValidUrl:url])
+        if(![self isValidUrl:url])
         {
-            NSString * title = [dict objectForKey:@"title"];
-            HNStoryDetailViewController * detail = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
-            [[HNReaderAppDelegate instance].viewController pushView:detail];
-            [detail slideInWithUrl:url withTitle:title];
-            detail.delegate = self;
-            
+            url = [self getHNUrl:url];
         }        
+        NSString * title = [dict objectForKey:@"title"];
+        HNStoryDetailViewController * detail = [[HNStoryDetailViewController alloc] initWithNibName:@"HNStoryDetailViewController" bundle:nil];
+        [[HNReaderAppDelegate instance].viewController pushView:detail];
+        [detail slideInWithUrl:url withTitle:title];
+        detail.delegate = self;
+        
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -279,6 +281,13 @@
     NSRange range = [url rangeOfString : hasProtocol];
     return (range.location == NSNotFound) ? NO : YES;
 
+}
+-(NSString*) getHNUrl:(NSString*) url_
+{
+    NSURL * url = [NSURL URLWithString:url_];
+    NSString * hnId = [url lastPathComponent];
+    NSString * formedUrl = [NSString stringWithFormat:@"http://news.ycombinator.com/item?id=%@",hnId];
+    return formedUrl;
 }
 
 -(void) HNStarButton:(HNStarButton *)button toggled:(BOOL)isChecked
