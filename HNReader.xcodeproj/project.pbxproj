@@ -26,7 +26,7 @@
 		55596B0E13E275B5008DBD28 /* HNReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B0D13E275B5008DBD28 /* HNReaderAppDelegate.m */; };
 		55596B1113E275B5008DBD28 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55596B0F13E275B5008DBD28 /* MainWindow.xib */; };
 		55596B1413E275B5008DBD28 /* BaseViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B1313E275B5008DBD28 /* BaseViewContainer.m */; };
-		55596B1713E275B5008DBD28 /* HNReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55596B1513E275B5008DBD28 /* HNReaderViewController.xib */; };
+		55596B1713E275B5008DBD28 /* BaseViewContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55596B1513E275B5008DBD28 /* BaseViewContainer.xib */; };
 		55596B1E13E275B5008DBD28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55596AFD13E275B5008DBD28 /* UIKit.framework */; };
 		55596B1F13E275B5008DBD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55596AFF13E275B5008DBD28 /* Foundation.framework */; };
 		55596B2013E275B5008DBD28 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55596B0113E275B5008DBD28 /* CoreGraphics.framework */; };
@@ -91,7 +91,7 @@
 		55596B1013E275B5008DBD28 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		55596B1213E275B5008DBD28 /* BaseViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewContainer.h; sourceTree = "<group>"; };
 		55596B1313E275B5008DBD28 /* BaseViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewContainer.m; sourceTree = "<group>"; };
-		55596B1613E275B5008DBD28 /* HNReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HNReaderViewController.xib; path = en.lproj/HNReaderViewController.xib; sourceTree = "<group>"; };
+		55596B1613E275B5008DBD28 /* HNReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HNReaderViewController.xib; path = en.lproj/BaseViewContainer.xib; sourceTree = "<group>"; };
 		55596B1D13E275B5008DBD28 /* HNReaderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HNReaderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55596B2513E275B5008DBD28 /* HNReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HNReaderTests-Info.plist"; sourceTree = "<group>"; };
 		55596B2713E275B5008DBD28 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				55596B0F13E275B5008DBD28 /* MainWindow.xib */,
-				55596B1513E275B5008DBD28 /* HNReaderViewController.xib */,
+				55596B1513E275B5008DBD28 /* BaseViewContainer.xib */,
 				551858FF13E2785A00778555 /* ProgressSpinner.h */,
 				5518590013E2785A00778555 /* ProgressSpinner.m */,
 				55596B1213E275B5008DBD28 /* BaseViewContainer.h */,
@@ -344,7 +344,7 @@
 			files = (
 				55596B0813E275B5008DBD28 /* InfoPlist.strings in Resources */,
 				55596B1113E275B5008DBD28 /* MainWindow.xib in Resources */,
-				55596B1713E275B5008DBD28 /* HNReaderViewController.xib in Resources */,
+				55596B1713E275B5008DBD28 /* BaseViewContainer.xib in Resources */,
 				55E8E00A13E32C6800E72114 /* icon.png in Resources */,
 				55FD98E213E36B7C00FD1C4A /* bluetab.png in Resources */,
 				55FD98E313E36B7C00FD1C4A /* orangetab.png in Resources */,
@@ -439,12 +439,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		55596B1513E275B5008DBD28 /* HNReaderViewController.xib */ = {
+		55596B1513E275B5008DBD28 /* BaseViewContainer.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				55596B1613E275B5008DBD28 /* HNReaderViewController.xib */,
 			);
-			name = HNReaderViewController.xib;
+			name = BaseViewContainer.xib;
 			sourceTree = "<group>";
 		};
 		55596B2613E275B5008DBD28 /* InfoPlist.strings */ = {
