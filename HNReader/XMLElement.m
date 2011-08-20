@@ -114,4 +114,9 @@ static int XMLElementOutputCloseCallback(void *context) {
     return [[self attributes] objectForKey:name];
 }
 
+-(NSString*) description
+{
+    NSString * d = [NSString stringWithFormat:@"%@ ( %@ ) ", [self tagName], [self content]]; 
+    return d;
+}
 @end

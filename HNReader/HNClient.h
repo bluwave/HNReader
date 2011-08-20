@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "HttpResponse.h"
 
+typedef enum HNSubmissionType{ NEWS, NEW } HNSubmissionType;
+
 @interface HNClient : NSObject {
     
 }
--(void) getPosts:(void(^)(HttpResponse * resp, NSDictionary* posts)) complete;
+-(void) getPostsOfType:(HNSubmissionType) type WithMoreId:(NSString*) nextId completeBlock:(void(^)(HttpResponse * resp, NSDictionary* posts)) complete;
 @end

@@ -15,15 +15,17 @@
 @interface LeftViewController()
 @property(retain,nonatomic) UITableView * _tableView;
 @property(retain,nonatomic) NSMutableArray * _posts;
-
+@property(retain,nonatomic) NSString* _nextId;
 -(void) loadList;
 @end
 
 @implementation LeftViewController
 @synthesize _tableView;
 @synthesize _posts;
+@synthesize _nextId;
 - (void)dealloc
 {
+    [_nextId release];
     [_posts release];
     [_tableView release];
     [super dealloc];
@@ -51,6 +53,7 @@
 {
     [super viewDidLoad];
     
+    self._posts = [NSMutableArray array];
     [self loadList];
     
     self.view.backgroundColor = [UIColor clearColor];
@@ -110,7 +113,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_posts count];
+    return [_posts count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,8 +124,16 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    NSDictionary * dict = [_posts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"title"]];
+    
+    if(indexPath.row == [_posts count])
+    {
+        cell.textLabel.text = @"load more...";
+    }
+    else{
+        
+        NSDictionary * dict = [_posts objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"title"]];
+    }
     return cell;
 }
 
@@ -130,6 +141,11 @@
 {
     NSLog(@"row clicked");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if(indexPath.row == [_posts count])
+    {
+        [self loadList];
+    }
     
 //    CustomPannableA * view = [[CustomPannableA alloc] initWithNibName:@"CustomPannableA" bundle:nil];
 //    [[[PanViewsAppDelegate instance] getViewManager] pushView:view]; 
@@ -140,7 +156,7 @@
 {
     HNClient * client = [[HNClient alloc] init];
     [[HNReaderAppDelegate instance] toggleSpinner:YES withView:[[HNReaderAppDelegate instance] getBaseView]   withLabel:@"Please wait" withDetailLabel:@"Please wait......"];
-    [client getPosts:^(HttpResponse *resp, NSDictionary *posts) 
+    [client getPostsOfType:NEWS WithMoreId:_nextId completeBlock:^(HttpResponse *resp, NSDictionary *posts) 
      {
          if(resp.hasError)
          {
@@ -148,7 +164,8 @@
          }
          else
          {
-             self._posts = [[posts objectForKey:@"posts"] mutableCopy];
+             self._nextId = [posts objectForKey:@"more"];
+             [_posts addObjectsFromArray:[posts objectForKey:@"posts"] ];
 //             NSLog(@"%@", _posts);
              [_tableView reloadData];
          }

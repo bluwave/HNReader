@@ -55,7 +55,11 @@
         XMLElement *third = [submissions objectAtIndex:i + 2];
         
         NSDictionary *submission = [self parseSubmissionWithElements:[NSArray arrayWithObjects:first, second, third, nil]];
-        if (submission != nil) [result addObject:submission];
+        if (submission != nil) 
+        {
+            if([submission objectForKey:@"more"] != nil) more = [[submission objectForKey:@"more"] copy];
+            else [result addObject:submission];
+        }
     }
     
     [document release];
@@ -130,8 +134,17 @@
                     if (end != NSNotFound) points = [NSNumber numberWithInt:[[content substringToIndex:end] intValue]];
                 }
             }
-        } else if ([[element attributeWithName:@"class"] isEqual:@"title"] && [[element content] isEqual:@"More"]) {
-            // XXX: parse more link: [[element attributeWithName:@"href"] substringFromIndex:[@"x?fnid=" length]];
+        }
+        // parse the more link 
+        else if([[element children] count] == 1)
+        {
+            XMLElement * moreAnchorTag = [[element children] objectAtIndex:0];
+            if(moreAnchorTag && [[moreAnchorTag tagName] isEqual:@"a"] && [[moreAnchorTag attributeWithName:@"rel" ] isEqual:@"nofollow"] && [[moreAnchorTag content] isEqual:@"More"] )
+            {
+                NSString * more = [moreAnchorTag attributeWithName:@"href"] ;
+                if(more)  // return immediately , this is all we care about this pass through
+                    return [NSDictionary dictionaryWithObjectsAndKeys:more, @"more", nil];
+            }
         }
     }
     

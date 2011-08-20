@@ -14,6 +14,7 @@
 
 @interface HNClient()
 -(NSURLRequest*) getRequestWithUrl:(NSString*) url;
+-(NSString* ) getSubmissionTypeStringFromType:(HNSubmissionType) type;
 @end
 
 @implementation HNClient
@@ -31,10 +32,16 @@
     return self;
 }
 
--(void) getPosts:(void(^)(HttpResponse * resp, NSDictionary* posts)) complete
+#pragma mark public request selectors
+-(void) getPostsOfType:(HNSubmissionType) type WithMoreId:(NSString*) moreLink completeBlock:(void(^)(HttpResponse * resp, NSDictionary* posts)) complete;
 {
-    NSString * nextId = @"";
-    NSString * url = [NSString stringWithFormat:@"%@/news%@",kBaseUrl, nextId];
+    NSString * submissionType = nil;
+    // if we don't have a moreLink (news.ycombinator.com/x?fnid=hkTVS5G4OD), then use the url like (i.e. news.ycombinator.com/newest , /news)
+    if( ! moreLink )
+        submissionType = [self getSubmissionTypeStringFromType:type];
+    
+    NSString * listTypeAndSection = (moreLink) ? moreLink : submissionType;
+    NSString * url = [NSString stringWithFormat:@"%@%@",kBaseUrl, listTypeAndSection];
     NSURLRequest * req = [self getRequestWithUrl:url];
 
     NSLog(@"[HNClient] URL: %@", url);
@@ -50,6 +57,7 @@
     }];
     
 }
+#pragma mark private helpers
 -(NSURLRequest*) getRequestWithUrl:(NSString*) url
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]] ;
@@ -57,5 +65,20 @@
 //    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	[request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
     return request;
+}
+
+
+-(NSString* ) getSubmissionTypeStringFromType:(HNSubmissionType) type
+{
+    NSString * urlPiece = nil;
+    switch (type) {
+        case NEWS:
+            urlPiece = @"/news";
+            break;
+        case NEW:
+            urlPiece =@"/newest";
+            break;
+    }
+    return urlPiece;
 }
 @end
