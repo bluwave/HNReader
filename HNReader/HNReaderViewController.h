@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HNBaseViewController;
+
 
 @interface HNReaderViewController : UIViewController {
     
 }
 
-@property(retain, nonatomic) IBOutlet UIView * _left;
-@property(retain, nonatomic) IBOutlet UIView * _right;
--(void) pushView:(HNBaseViewController*) view;
--(void) reloadList;
 @end

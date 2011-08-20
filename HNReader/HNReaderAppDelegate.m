@@ -59,21 +59,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZZ"]; // 2011-08-01 05:51:29 +0000    
-    NSDate * now = [NSDate date];
-    NSDate* dateOfLastLaunch = [df dateFromString:[def stringForKey:@"dateOfLastLaunch"]];
-    [df release];
-    NSTimeInterval interval =[now timeIntervalSinceDate:dateOfLastLaunch];
-    NSLog(@"interval: %f", interval);    
-    if(interval > (60 * 15))
-    {
-        NSLog(@"**** list is stale *****");
-        [self.viewController reloadList];
-    }
-    [def setObject:[[NSDate date] description] forKey:@"dateOfLastLaunch"];
-    [def synchronize];
+  
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
