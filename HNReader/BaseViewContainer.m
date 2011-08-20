@@ -1,22 +1,25 @@
 //
-//  HNReaderViewController.m
-//  HNReader
+//  BaseViewContainer.m
+//  PanViews
 //
-//  Created by slim on 7/28/11.
+//  Created by slim on 8/19/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "BaseViewContainer.h"
-#import "HNReaderAppDelegate.h"
 
-@interface BaseViewContainer ()
+
+@interface BaseViewContainer()
+@property(retain, nonatomic) ViewManager * _viewManager;
 @end
 
-
 @implementation BaseViewContainer
-
+@synthesize _viewManager;
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_viewManager dealloc];
+    
     [super dealloc];
 }
 
@@ -24,17 +27,19 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    // Release any cached data, images, etc that aren't in use.
 }
 
 #pragma mark - View lifecycle
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self._viewManager= [[ViewManager alloc] initWithBaseView:self.view];
     
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
 }
 
@@ -42,9 +47,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    
-    
-    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -57,11 +59,17 @@
 
 - (void)orientationChanged:(NSNotification *)notification
 {
-    // We must add a delay here, otherwise we'll swap in the new view
-	// too quickly and we'll get an animation glitch
     [self performSelector:@selector(rotateTheScreen) withObject:nil afterDelay:0];
 }
 
+- (void) rotateTheScreen
+{
+    [_viewManager notifyViewsOfOrientationChange];
+}
 
-#pragma mark - methods
+-(ViewManager*) getViewManager
+{
+    return _viewManager;
+}
+
 @end

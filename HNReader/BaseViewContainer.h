@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ViewManager.h"
 
 @interface BaseViewContainer : UIViewController {
     
 }
-
+-(ViewManager*) getViewManager;
 @end
