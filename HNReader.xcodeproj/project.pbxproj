@@ -25,7 +25,7 @@
 		55596B0B13E275B5008DBD28 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B0A13E275B5008DBD28 /* main.m */; };
 		55596B0E13E275B5008DBD28 /* HNReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B0D13E275B5008DBD28 /* HNReaderAppDelegate.m */; };
 		55596B1113E275B5008DBD28 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55596B0F13E275B5008DBD28 /* MainWindow.xib */; };
-		55596B1413E275B5008DBD28 /* HNReaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B1313E275B5008DBD28 /* HNReaderViewController.m */; };
+		55596B1413E275B5008DBD28 /* BaseViewContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 55596B1313E275B5008DBD28 /* BaseViewContainer.m */; };
 		55596B1713E275B5008DBD28 /* HNReaderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55596B1513E275B5008DBD28 /* HNReaderViewController.xib */; };
 		55596B1E13E275B5008DBD28 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55596AFD13E275B5008DBD28 /* UIKit.framework */; };
 		55596B1F13E275B5008DBD28 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55596AFF13E275B5008DBD28 /* Foundation.framework */; };
@@ -83,18 +83,18 @@
 		55596AFF13E275B5008DBD28 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		55596B0113E275B5008DBD28 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		55596B0513E275B5008DBD28 /* HNReader-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HNReader-Info.plist"; sourceTree = "<group>"; };
-		55596B0713E275B5008DBD28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55596B0713E275B5008DBD28 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55596B0913E275B5008DBD28 /* HNReader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HNReader-Prefix.pch"; sourceTree = "<group>"; };
 		55596B0A13E275B5008DBD28 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55596B0C13E275B5008DBD28 /* HNReaderAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderAppDelegate.h; sourceTree = "<group>"; };
 		55596B0D13E275B5008DBD28 /* HNReaderAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderAppDelegate.m; sourceTree = "<group>"; };
-		55596B1013E275B5008DBD28 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		55596B1213E275B5008DBD28 /* HNReaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderViewController.h; sourceTree = "<group>"; };
-		55596B1313E275B5008DBD28 /* HNReaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderViewController.m; sourceTree = "<group>"; };
-		55596B1613E275B5008DBD28 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HNReaderViewController.xib; sourceTree = "<group>"; };
+		55596B1013E275B5008DBD28 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		55596B1213E275B5008DBD28 /* BaseViewContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewContainer.h; sourceTree = "<group>"; };
+		55596B1313E275B5008DBD28 /* BaseViewContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewContainer.m; sourceTree = "<group>"; };
+		55596B1613E275B5008DBD28 /* HNReaderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HNReaderViewController.xib; path = en.lproj/HNReaderViewController.xib; sourceTree = "<group>"; };
 		55596B1D13E275B5008DBD28 /* HNReaderTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HNReaderTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55596B2513E275B5008DBD28 /* HNReaderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HNReaderTests-Info.plist"; sourceTree = "<group>"; };
-		55596B2713E275B5008DBD28 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55596B2713E275B5008DBD28 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55596B2913E275B5008DBD28 /* HNReaderTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HNReaderTests-Prefix.pch"; sourceTree = "<group>"; };
 		55596B2A13E275B5008DBD28 /* HNReaderTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNReaderTests.h; sourceTree = "<group>"; };
 		55596B2C13E275B5008DBD28 /* HNReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HNReaderTests.m; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 				55596B1513E275B5008DBD28 /* HNReaderViewController.xib */,
 				551858FF13E2785A00778555 /* ProgressSpinner.h */,
 				5518590013E2785A00778555 /* ProgressSpinner.m */,
-				55596B1213E275B5008DBD28 /* HNReaderViewController.h */,
-				55596B1313E275B5008DBD28 /* HNReaderViewController.m */,
+				55596B1213E275B5008DBD28 /* BaseViewContainer.h */,
+				55596B1313E275B5008DBD28 /* BaseViewContainer.m */,
 				5576BBBB13E9CFF2008F95BA /* HNStarButton.h */,
 				5576BBBC13E9CFF2008F95BA /* HNStarButton.m */,
 			);
@@ -387,7 +387,7 @@
 			files = (
 				55596B0B13E275B5008DBD28 /* main.m in Sources */,
 				55596B0E13E275B5008DBD28 /* HNReaderAppDelegate.m in Sources */,
-				55596B1413E275B5008DBD28 /* HNReaderViewController.m in Sources */,
+				55596B1413E275B5008DBD28 /* BaseViewContainer.m in Sources */,
 				5518590113E2785A00778555 /* ProgressSpinner.m in Sources */,
 				5518591013E2789100778555 /* CDataScanner.m in Sources */,
 				5518591113E2789100778555 /* CJSONDataSerializer.m in Sources */,
@@ -426,7 +426,7 @@
 		55596B0613E275B5008DBD28 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55596B0713E275B5008DBD28 /* en */,
+				55596B0713E275B5008DBD28 /* InfoPlist.strings */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 		55596B0F13E275B5008DBD28 /* MainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55596B1013E275B5008DBD28 /* en */,
+				55596B1013E275B5008DBD28 /* MainWindow.xib */,
 			);
 			name = MainWindow.xib;
 			sourceTree = "<group>";
@@ -442,7 +442,7 @@
 		55596B1513E275B5008DBD28 /* HNReaderViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55596B1613E275B5008DBD28 /* en */,
+				55596B1613E275B5008DBD28 /* HNReaderViewController.xib */,
 			);
 			name = HNReaderViewController.xib;
 			sourceTree = "<group>";
@@ -450,7 +450,7 @@
 		55596B2613E275B5008DBD28 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55596B2713E275B5008DBD28 /* en */,
+				55596B2713E275B5008DBD28 /* InfoPlist.strings */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

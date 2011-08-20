@@ -6,14 +6,14 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "HNReaderViewController.h"
+#import "BaseViewContainer.h"
 #import "HNReaderAppDelegate.h"
 
-@interface HNReaderViewController()
+@interface BaseViewContainer ()
 @end
 
 
-@implementation HNReaderViewController
+@implementation BaseViewContainer
 
 - (void)dealloc
 {

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface HNReaderViewController : UIViewController {
+@interface BaseViewContainer : UIViewController {
     
 }
 

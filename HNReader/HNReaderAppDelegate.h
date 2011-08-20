@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ProgressSpinner.h"
 
-@class HNReaderViewController;
+@class BaseViewContainer;
 
 @interface HNReaderAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -17,7 +17,7 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet HNReaderViewController *viewController;
+@property (nonatomic, retain) IBOutlet BaseViewContainer *viewController;
 
 @property(retain,nonatomic) ProgressSpinner * progressSpinner;
 

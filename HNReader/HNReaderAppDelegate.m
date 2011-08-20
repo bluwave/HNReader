@@ -8,7 +8,7 @@
 
 #import "HNReaderAppDelegate.h"
 
-#import "HNReaderViewController.h"
+#import "BaseViewContainer.h"
 
 @implementation HNReaderAppDelegate
 
