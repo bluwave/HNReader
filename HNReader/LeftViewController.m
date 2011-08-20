@@ -8,17 +8,23 @@
 
 #import "LeftViewController.h"
 #import "UIView+Orientation.h"
-
 #import "HNReaderAppDelegate.h"
+#import "HttpResponse.h"
+#import "HNClient.h"
 
 @interface LeftViewController()
 @property(retain,nonatomic) UITableView * _tableView;
+@property(retain,nonatomic) NSMutableArray * _posts;
+
+-(void) loadList;
 @end
 
 @implementation LeftViewController
 @synthesize _tableView;
+@synthesize _posts;
 - (void)dealloc
 {
+    [_posts release];
     [_tableView release];
     [super dealloc];
 }
@@ -27,7 +33,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -45,6 +50,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self loadList];
+    
     self.view.backgroundColor = [UIColor clearColor];
     CGRect frame= [UIView getOrientationSizing];
     
@@ -61,6 +69,9 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
+    
+    
+    
 }
 
 - (void)viewDidUnload
@@ -99,7 +110,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return [_posts count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +121,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"row %d", indexPath.row ];
+    NSDictionary * dict = [_posts objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"title"]];
     return cell;
 }
 
@@ -121,7 +133,26 @@
     
 //    CustomPannableA * view = [[CustomPannableA alloc] initWithNibName:@"CustomPannableA" bundle:nil];
 //    [[[PanViewsAppDelegate instance] getViewManager] pushView:view]; 
-//    [view release];
+    //    [view release];
 }
 
+-(void) loadList
+{
+    HNClient * client = [[HNClient alloc] init];
+    [[HNReaderAppDelegate instance] toggleSpinner:YES withView:[[HNReaderAppDelegate instance] getBaseView]   withLabel:@"Please wait" withDetailLabel:@"Please wait......"];
+    [client getPosts:^(HttpResponse *resp, NSDictionary *posts) 
+     {
+         if(resp.hasError)
+         {
+             [[[[UIAlertView alloc] initWithTitle:@"Houston we have a problem" message:@"Something went wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
+         }
+         else
+         {
+             self._posts = [[posts objectForKey:@"posts"] mutableCopy];
+//             NSLog(@"%@", _posts);
+             [_tableView reloadData];
+         }
+     }];
+    [client release];
+}
 @end

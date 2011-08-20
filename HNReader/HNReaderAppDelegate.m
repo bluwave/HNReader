@@ -127,6 +127,11 @@
     else
         return YES;
 }
+-(UIView*) getBaseView
+{
+    return self.viewController.view;
+}
+
 
 
 #pragma mark - Core Data stack

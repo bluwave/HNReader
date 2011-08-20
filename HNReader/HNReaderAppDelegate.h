@@ -32,4 +32,5 @@
 +(HNReaderAppDelegate *) instance;
 -(void) toggleSpinner:(BOOL)sFlag withView:(UIView*) view withLabel:(NSString*) label withDetailLabel:(NSString*) detail;
 - (BOOL) isOrientationPortrait;
+-(UIView*) getBaseView;
 @end
