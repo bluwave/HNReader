@@ -11,6 +11,9 @@
 #import "HNReaderAppDelegate.h"
 #import "HttpResponse.h"
 #import "HNClient.h"
+#import "SubmissionCell.h"
+
+#define kMAXWIDTH 768  
 
 @interface LeftViewController()
 @property(retain,nonatomic) UITableView * _tableView;
@@ -60,14 +63,17 @@
     CGRect frame= [UIView getOrientationSizing];
     
     CGRect vFrame = self.view.frame;
-    vFrame.size.width = 320;
+    vFrame.size.width = kMAXWIDTH;
     vFrame.size.height = frame.size.height;
     self.view.frame = vFrame;
     
     
-    frame.size.width = 320;
+    
+    
+    
+    frame.size.width = kMAXWIDTH;
     self._tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    self._tableView.backgroundColor = [UIColor lightGrayColor];
+//    self._tableView.backgroundColor = [UIColor lightGrayColor];
     self._tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -115,6 +121,14 @@
 {
     return [_posts count] + 1;
 }
+//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 66.0;
+//}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//
+//    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"brown_bg.png"] ] ;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -122,7 +136,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"SubmissionCell" owner:nil options:nil];
+        cell = [nibContents objectAtIndex:0];
     }
     
     if(indexPath.row == [_posts count])
@@ -131,8 +147,10 @@
     }
     else{
         
+        SubmissionCell* scell = (SubmissionCell*)cell;
+        
         NSDictionary * dict = [_posts objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",[dict objectForKey:@"title"]];
+        [scell loadWithDictionary:dict];
     }
     return cell;
 }
@@ -166,7 +184,7 @@
          {
              self._nextId = [posts objectForKey:@"more"];
              [_posts addObjectsFromArray:[posts objectForKey:@"posts"] ];
-//             NSLog(@"%@", _posts);
+             NSLog(@"%@", _posts);
              [_tableView reloadData];
          }
      }];
