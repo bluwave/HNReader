@@ -47,6 +47,8 @@
 		5576BBD713EA4D3A008F95BA /* star_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576BBD513EA4D3A008F95BA /* star_off.png */; };
 		5576BBD813EA4D3A008F95BA /* star_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 5576BBD613EA4D3A008F95BA /* star_on.png */; };
 		558B60D913E2AB660014B37C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558B60D813E2AB660014B37C /* MessageUI.framework */; };
+		55BD5DDB144BD95600781C85 /* SubmissionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BD5DD9144BD95600781C85 /* SubmissionListViewController.m */; };
+		55BD5DDC144BD95600781C85 /* SubmissionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BD5DDA144BD95600781C85 /* SubmissionListViewController.xib */; };
 		55E55C011400443100841852 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 55E55C001400443100841852 /* libxml2.dylib */; };
 		55E55C071400467900841852 /* XMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E55C041400467900841852 /* XMLDocument.m */; };
 		55E55C081400467900841852 /* XMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E55C061400467900841852 /* XMLElement.m */; };
@@ -54,6 +56,10 @@
 		55E55C0F1400649400841852 /* SubmissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E55C0E1400649400841852 /* SubmissionCell.m */; };
 		55E55C111400652700841852 /* SubmissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55E55C101400652700841852 /* SubmissionCell.xib */; };
 		55E55C1314008ADE00841852 /* brown_bg in Resources */ = {isa = PBXBuildFile; fileRef = 55E55C1214008ADE00841852 /* brown_bg */; };
+		55E55C1614018C2600841852 /* UIColor+HNColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E55C1514018C2600841852 /* UIColor+HNColors.m */; };
+		55E55C181401963D00841852 /* menu_bg in Resources */ = {isa = PBXBuildFile; fileRef = 55E55C171401963D00841852 /* menu_bg */; };
+		55E55C1B140199BD00841852 /* row_borders_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E55C19140199BD00841852 /* row_borders_off.png */; };
+		55E55C1C140199BD00841852 /* row_borders_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E55C1A140199BD00841852 /* row_borders_on.png */; };
 		55E8E00A13E32C6800E72114 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E8E00913E32C6800E72114 /* icon.png */; };
 		55EDEEFE1400338F00CAFBA5 /* HNClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 55EDEEFD1400338F00CAFBA5 /* HNClient.m */; };
 		55FD98E213E36B7C00FD1C4A /* bluetab.png in Resources */ = {isa = PBXBuildFile; fileRef = 55FD98E013E36B7C00FD1C4A /* bluetab.png */; };
@@ -136,6 +142,9 @@
 		5576BBD513EA4D3A008F95BA /* star_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_off.png; path = Resources/images/star_off.png; sourceTree = "<group>"; };
 		5576BBD613EA4D3A008F95BA /* star_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star_on.png; path = Resources/images/star_on.png; sourceTree = "<group>"; };
 		558B60D813E2AB660014B37C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		55BD5DD8144BD95600781C85 /* SubmissionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmissionListViewController.h; sourceTree = "<group>"; };
+		55BD5DD9144BD95600781C85 /* SubmissionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionListViewController.m; sourceTree = "<group>"; };
+		55BD5DDA144BD95600781C85 /* SubmissionListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmissionListViewController.xib; sourceTree = "<group>"; };
 		55E55C001400443100841852 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		55E55C031400467900841852 /* XMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDocument.h; sourceTree = "<group>"; };
 		55E55C041400467900841852 /* XMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDocument.m; sourceTree = "<group>"; };
@@ -147,6 +156,11 @@
 		55E55C0E1400649400841852 /* SubmissionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmissionCell.m; sourceTree = "<group>"; };
 		55E55C101400652700841852 /* SubmissionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubmissionCell.xib; sourceTree = "<group>"; };
 		55E55C1214008ADE00841852 /* brown_bg */ = {isa = PBXFileReference; lastKnownFileType = file; name = brown_bg; path = Resources/images/brown_bg; sourceTree = "<group>"; };
+		55E55C1414018C2600841852 /* UIColor+HNColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HNColors.h"; sourceTree = "<group>"; };
+		55E55C1514018C2600841852 /* UIColor+HNColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HNColors.m"; sourceTree = "<group>"; };
+		55E55C171401963D00841852 /* menu_bg */ = {isa = PBXFileReference; lastKnownFileType = file; name = menu_bg; path = Resources/images/menu_bg; sourceTree = "<group>"; };
+		55E55C19140199BD00841852 /* row_borders_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = row_borders_off.png; path = Resources/images/row_borders_off.png; sourceTree = "<group>"; };
+		55E55C1A140199BD00841852 /* row_borders_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = row_borders_on.png; path = Resources/images/row_borders_on.png; sourceTree = "<group>"; };
 		55E8E00913E32C6800E72114 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		55EDEEFC1400338F00CAFBA5 /* HNClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNClient.h; sourceTree = "<group>"; };
 		55EDEEFD1400338F00CAFBA5 /* HNClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNClient.m; sourceTree = "<group>"; };
@@ -197,6 +211,9 @@
 				55596B1313E275B5008DBD28 /* BaseViewContainer.m */,
 				5576BBBB13E9CFF2008F95BA /* HNStarButton.h */,
 				5576BBBC13E9CFF2008F95BA /* HNStarButton.m */,
+				55BD5DD8144BD95600781C85 /* SubmissionListViewController.h */,
+				55BD5DD9144BD95600781C85 /* SubmissionListViewController.m */,
+				55BD5DDA144BD95600781C85 /* SubmissionListViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -327,6 +344,8 @@
 				555E0CAD13FF8BFB00FEF5A2 /* UIView+Orientation.m */,
 				55E55C091400492700841852 /* NSString+Tags.h */,
 				55E55C0A1400492700841852 /* NSString+Tags.m */,
+				55E55C1414018C2600841852 /* UIColor+HNColors.h */,
+				55E55C1514018C2600841852 /* UIColor+HNColors.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +389,9 @@
 		55E8E00C13E32C6C00E72114 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				55E55C19140199BD00841852 /* row_borders_off.png */,
+				55E55C1A140199BD00841852 /* row_borders_on.png */,
+				55E55C171401963D00841852 /* menu_bg */,
 				55E55C1214008ADE00841852 /* brown_bg */,
 				5576BBD513EA4D3A008F95BA /* star_off.png */,
 				5576BBD613EA4D3A008F95BA /* star_on.png */,
@@ -466,6 +488,10 @@
 				555E0CB313FF8CA500FEF5A2 /* LeftViewController.xib in Resources */,
 				55E55C111400652700841852 /* SubmissionCell.xib in Resources */,
 				55E55C1314008ADE00841852 /* brown_bg in Resources */,
+				55E55C181401963D00841852 /* menu_bg in Resources */,
+				55E55C1B140199BD00841852 /* row_borders_off.png in Resources */,
+				55E55C1C140199BD00841852 /* row_borders_on.png in Resources */,
+				55BD5DDC144BD95600781C85 /* SubmissionListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +555,8 @@
 				55E55C081400467900841852 /* XMLElement.m in Sources */,
 				55E55C0B1400492700841852 /* NSString+Tags.m in Sources */,
 				55E55C0F1400649400841852 /* SubmissionCell.m in Sources */,
+				55E55C1614018C2600841852 /* UIColor+HNColors.m in Sources */,
+				55BD5DDB144BD95600781C85 /* SubmissionListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

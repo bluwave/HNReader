@@ -7,6 +7,8 @@
 
 #import "ViewManager.h"
 #import "LeftViewController.h"
+#import "UIView+Orientation.h"
+#import "SubmissionListViewController.h"
 
 
 @interface ViewManager()
@@ -39,14 +41,34 @@
     return self;
 }
 
+#define kPaddingBetweenViews 40
+
+
 -(void) pushView:(PannableViewController *) view
 {
     
     NSLog(@"[push] %@", view);
-    [_views addObject:view];
     view.viewIndexInStack = [_views count];
+    [_views addObject:view];
+    
+    CGRect frame = view.view.frame;
+    
+    frame.origin.x = 2000;
+    view.view.frame = frame;
+    
+    int startPt = 320;
+//    frame.origin.x = ([UIView isOrienationPortait]) ? 0 : 0 ;
+    frame.origin.x = startPt + (view.viewIndexInStack * kPaddingBetweenViews);
+    frame = [view updateBounds:frame];
     [_baseView addSubview:view.view];
-
+    
+    [UIView transitionWithView:view.view duration:0.9 options:UIViewAnimationOptionCurveEaseOut animations:^
+    {
+        view.view.frame = frame;
+    } completion:^(BOOL finished) 
+    {
+        [view didFinishSlidingIn];
+    }];
 }
 
 -(void) notifyViewsOfOrientationChange
@@ -60,5 +82,21 @@
 -(int) getViewsInStack
 {
     return [_views count];
+}
+
+-(void) openView:(int) view
+{
+    switch (view) 
+    {
+        case 0:
+        {
+            SubmissionListViewController * list = [[SubmissionListViewController alloc] initWithNibName:@"SubmissionListViewController" bundle:nil];
+            [self pushView:list];
+            [list release];
+            break;
+        }
+        case 1:
+            break;
+    }
 }
 @end

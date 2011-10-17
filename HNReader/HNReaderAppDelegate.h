@@ -10,6 +10,7 @@
 #import "ProgressSpinner.h"
 
 @class BaseViewContainer;
+@class ViewManager;
 
 @interface HNReaderAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -31,6 +32,7 @@
 
 +(HNReaderAppDelegate *) instance;
 -(void) toggleSpinner:(BOOL)sFlag withView:(UIView*) view withLabel:(NSString*) label withDetailLabel:(NSString*) detail;
-- (BOOL) isOrientationPortrait;
+//- (BOOL) isOrientationPortrait;
 -(UIView*) getBaseView;
+-(ViewManager*) getViewManager;
 @end

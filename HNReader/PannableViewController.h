@@ -17,4 +17,9 @@
 }
 
 @property int viewIndexInStack;
+
+
+-(CGRect) updateBounds:(CGRect) frame;
+
+-(void) didFinishSlidingIn;
 @end

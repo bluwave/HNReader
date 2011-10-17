@@ -118,20 +118,24 @@
     
 }
 
-- (BOOL) isOrientationPortrait
-{
-    
-    if(([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft )||
-       ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight ))
-        return NO;
-    else
-        return YES;
-}
+//- (BOOL) isOrientationPortrait
+//{
+//    
+//    if(([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft )||
+//       ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight ))
+//        return NO;
+//    else
+//        return YES;
+//}
 -(UIView*) getBaseView
 {
     return self.viewController.view;
 }
 
+-(ViewManager*) getViewManager
+{
+    return [self.viewController getViewManager];
+}
 
 
 #pragma mark - Core Data stack

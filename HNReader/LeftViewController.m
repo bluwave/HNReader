@@ -8,28 +8,28 @@
 
 #import "LeftViewController.h"
 #import "UIView+Orientation.h"
+#import "UIColor+HNColors.h"
 #import "HNReaderAppDelegate.h"
-#import "HttpResponse.h"
-#import "HNClient.h"
-#import "SubmissionCell.h"
+#import "ViewManager.h"
 
-#define kMAXWIDTH 768  
+
+
+
+#define kMAXWIDTH 320  
 
 @interface LeftViewController()
 @property(retain,nonatomic) UITableView * _tableView;
-@property(retain,nonatomic) NSMutableArray * _posts;
-@property(retain,nonatomic) NSString* _nextId;
--(void) loadList;
+@property(retain,nonatomic) NSMutableArray * _menu;
+//-(void) loadList;
 @end
 
 @implementation LeftViewController
 @synthesize _tableView;
-@synthesize _posts;
-@synthesize _nextId;
+@synthesize _menu;
+
 - (void)dealloc
 {
-    [_nextId release];
-    [_posts release];
+    [_menu release];
     [_tableView release];
     [super dealloc];
 }
@@ -56,12 +56,11 @@
 {
     [super viewDidLoad];
     
-    self._posts = [NSMutableArray array];
-    [self loadList];
+    self._menu  = [NSMutableArray arrayWithObjects:@"News", @"New", @"Comments",@"Saved",@"Settings", nil];
     
-    self.view.backgroundColor = [UIColor clearColor];
+
     CGRect frame= [UIView getOrientationSizing];
-    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"menu_bg.png"]];
     CGRect vFrame = self.view.frame;
     vFrame.size.width = kMAXWIDTH;
     vFrame.size.height = frame.size.height;
@@ -73,10 +72,11 @@
     
     frame.size.width = kMAXWIDTH;
     self._tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-//    self._tableView.backgroundColor = [UIColor lightGrayColor];
+    _tableView.backgroundColor = [UIColor clearColor];
     self._tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
     
@@ -119,39 +119,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_posts count] + 1;
+    return [_menu count];
 }
-//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 66.0;
-//}
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"brown_bg.png"] ] ;
-//}
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    cell.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"row_borders_on.png"]];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        NSArray *nibContents = [[NSBundle mainBundle] loadNibNamed:@"SubmissionCell" owner:nil options:nil];
-        cell = [nibContents objectAtIndex:0];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    if(indexPath.row == [_posts count])
-    {
-        cell.textLabel.text = @"load more...";
-    }
-    else{
-        
-        SubmissionCell* scell = (SubmissionCell*)cell;
-        
-        NSDictionary * dict = [_posts objectAtIndex:indexPath.row];
-        [scell loadWithDictionary:dict];
-    }
+    cell.textLabel.text = [_menu objectAtIndex:indexPath.row];
+    cell.textLabel.textColor = [UIColor HNBlue];
     return cell;
 }
 
@@ -159,35 +143,6 @@
 {
     NSLog(@"row clicked");
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if(indexPath.row == [_posts count])
-    {
-        [self loadList];
-    }
-    
-//    CustomPannableA * view = [[CustomPannableA alloc] initWithNibName:@"CustomPannableA" bundle:nil];
-//    [[[PanViewsAppDelegate instance] getViewManager] pushView:view]; 
-    //    [view release];
-}
-
--(void) loadList
-{
-    HNClient * client = [[HNClient alloc] init];
-    [[HNReaderAppDelegate instance] toggleSpinner:YES withView:[[HNReaderAppDelegate instance] getBaseView]   withLabel:@"Please wait" withDetailLabel:@"Please wait......"];
-    [client getPostsOfType:NEWS WithMoreId:_nextId completeBlock:^(HttpResponse *resp, NSDictionary *posts) 
-     {
-         if(resp.hasError)
-         {
-             [[[[UIAlertView alloc] initWithTitle:@"Houston we have a problem" message:@"Something went wrong" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease] show];
-         }
-         else
-         {
-             self._nextId = [posts objectForKey:@"more"];
-             [_posts addObjectsFromArray:[posts objectForKey:@"posts"] ];
-             NSLog(@"%@", _posts);
-             [_tableView reloadData];
-         }
-     }];
-    [client release];
+    [[[HNReaderAppDelegate instance] getViewManager] openView:0];
 }
 @end

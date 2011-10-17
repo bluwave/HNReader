@@ -122,6 +122,19 @@
     self.view.frame = frame;
 }
 
+-(CGRect) updateBounds:(CGRect) frame
+{
+    CGRect oFrame = [UIView getOrientationSizing];
+    frame.size.width = oFrame.size.width - frame.origin.x;
+    frame.size.height = oFrame.size.height;
+    return frame;
+}
+
+-(void) didFinishSlidingIn
+{
+    
+}
+
 
 #pragma mark panning handler
 -(void) handlePan:(UIPanGestureRecognizer *) gesture 

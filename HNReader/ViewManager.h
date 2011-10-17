@@ -18,4 +18,6 @@
 -(void) notifyViewsOfOrientationChange;
 
 -(int) getViewsInStack;
+
+-(void) openView:(int) view;
 @end
